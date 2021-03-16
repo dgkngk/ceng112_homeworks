@@ -1,11 +1,15 @@
 package hW1;
 
 import java.io.*;
+import java.util.*;
+
+
 public class FileIO {
      
 	public static InventoryBag<Item> readInventory(){
 		
 		BufferedReader inputStream;
+		InventoryBag<> inventoryBag = new InventoryBag;
 		
 		try {
 			
@@ -18,6 +22,8 @@ public class FileIO {
 				String item_name = line_tokens[0];
 				String item_compartment = line_tokens[1];
 				int item_weight = Integer.parseInt(line_tokens[2]);
+				Item item = new Item(item_name,item_compartment,item_weight);
+				
 				
 				
 				if(fileLine != null) {
@@ -42,15 +48,8 @@ public class FileIO {
 		}
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
 		return
+		
 	}
 
 }

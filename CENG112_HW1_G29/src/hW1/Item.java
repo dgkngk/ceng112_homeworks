@@ -1,4 +1,5 @@
 package hW1;
+//equals method eksik eklenmeli
 
 public class Item {
 	
