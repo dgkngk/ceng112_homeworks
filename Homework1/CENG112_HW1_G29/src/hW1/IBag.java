@@ -1,5 +1,5 @@
 package hW1;
-
+//this interface is ready
 public interface IBag<T> {
 	
 	public boolean add(T newItem);
@@ -14,5 +14,4 @@ public interface IBag<T> {
 	public int getIndexOf(T item);
 	public void displayItems();
 	public void dump();
-	
 }
