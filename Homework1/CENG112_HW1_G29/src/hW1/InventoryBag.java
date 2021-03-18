@@ -1,17 +1,25 @@
 package hW1;
-
-public class InventoryBag<T> implements IBag<T> {
+/*
+ * This class should not implement IBag because this class is not in homework mandatory classes so we can build inventoryBag class
+ * as we want.
+ * 
+ * Should an method that get item according to index of item or we can use toArray class return an array then reach item this new array
+ * 
+ * 
+ */
+public class InventoryBag<T> /*implements IBag<T>*/ {
 
 	private T[] BagArr;
 	private int number_entries;
 	
 	@SuppressWarnings("unchecked")
-	InventoryBag() {
+	public InventoryBag() {
 		BagArr = (T[]) new Object[20]; //Initialize the bag array as fixed size as of now
+	    number_entries=0;
 	}
 
-	@Override
-	public boolean add(T newItem) { //
+	//@Override
+	public boolean add(T newItem) { 
 		
 		boolean add_result=true;
 		
@@ -26,8 +34,8 @@ public class InventoryBag<T> implements IBag<T> {
 		
 	}
 
-	@Override
-	public boolean isEmpty() {  //
+	//@Override
+	public boolean isEmpty() {  
 		boolean is_empty = false;
 		
 		if (number_entries==0) {
@@ -37,7 +45,7 @@ public class InventoryBag<T> implements IBag<T> {
 		return(is_empty);
 	}
 
-	@Override
+	//@Override
 	public boolean isFull() {
 		boolean is_full = false;
 		
@@ -47,7 +55,20 @@ public class InventoryBag<T> implements IBag<T> {
 		}
 		return(is_full);
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	public T[] toArray() {
+		
+		T[] result = (T[]) new Object[number_entries];
+		for (int i=0; i<number_entries; i++) {
+			result[i]=BagArr[i];
+		}
+		return result;
+	}
+	
+	
+	
+/*
 	@Override
 	public boolean contains(Object item) {
 		// TODO Auto-generated method stub
@@ -56,7 +77,7 @@ public class InventoryBag<T> implements IBag<T> {
 
 	@Override
 	public boolean transferTo(IBag targetBag, Object item) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 
@@ -80,8 +101,8 @@ public class InventoryBag<T> implements IBag<T> {
 
 	@Override
 	public int getItemCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return number_entries;
 	}
 
 	@Override
@@ -101,5 +122,5 @@ public class InventoryBag<T> implements IBag<T> {
 		// TODO Auto-generated method stub
 		
 	}
-
+*/
 }

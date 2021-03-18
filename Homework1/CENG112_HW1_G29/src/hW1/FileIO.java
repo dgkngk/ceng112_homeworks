@@ -2,7 +2,9 @@ package hW1;
 
 import java.io.*;
 import java.util.*;
-
+/*
+ * FileIO finished.Can you check if there is any error?
+ */
 
 public class FileIO {
      
@@ -14,19 +16,22 @@ public class FileIO {
 		try {
 			
 			
-			inputStream = new BufferedReader(new FileReader("CENG112_HW1_G29\\inventory.txt"));
+			inputStream = new BufferedReader(new FileReader("C:\\Users\\kivi\\Documents\\GitHub\\ceng112_homeworks\\Homework1\\CENG112_HW1_G29\\inventory.txt"));
 			
 			while(true) {
 				String fileLine = inputStream.readLine();
-				String[] line_tokens = fileLine.split(",");
-				String item_name = line_tokens[0];
-				String item_compartment = line_tokens[1];
-				int item_weight = Integer.parseInt(line_tokens[2]);
-				Item item = new Item(item_name,item_compartment,item_weight);
-				inventoryBag.add(item);
-				
 				
 				if(fileLine != null) {
+					String[] line_tokens = fileLine.split(",");
+					String item_name = line_tokens[0];
+					String item_compartment = line_tokens[1];
+					int item_weight = Integer.parseInt(line_tokens[2]);
+					Item item = new Item(item_name,item_compartment,item_weight);
+					
+					inventoryBag.add(item);}
+				
+				
+				else {
 					break;
 					}
 				}
