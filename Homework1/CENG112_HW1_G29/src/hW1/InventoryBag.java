@@ -1,31 +1,51 @@
 package hW1;
 
-public class InventoryBag<T> implements IBag {
+public class InventoryBag<T> implements IBag<T> {
 
 	private T[] BagArr;
+	private int number_entries;
 	
 	@SuppressWarnings("unchecked")
 	InventoryBag() {
-		BagArr = (T[])new Object[20]; //Initialise the bag array as fixed size as of now
+		BagArr  (T[]) new Object[20]; //Initialize the bag array as fixed size as of now
 	}
-	
 
 	@Override
-	public boolean add(Object newItem) {
+	public boolean add(T newItem) { //
 		
-		return false;
+		boolean add_result=true;
+		
+		if(isFull()) {
+			add_result=false;
+		}
+		else {
+			BagArr[number_entries] = newItem;
+			number_entries++;		
+		}
+		return add_result;
+		
 	}
 
 	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean isEmpty() {  //
+		boolean is_empty = false;
+		
+		if (number_entries==0) {
+			is_empty=true;
+			return is_empty;
+		}
+		return(is_empty);
 	}
 
 	@Override
 	public boolean isFull() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean is_full = false;
+		
+		if (number_entries>=BagArr.length) {
+			is_full=true;
+			return is_full;
+		}
+		return(is_full);
 	}
 
 	@Override
@@ -41,13 +61,13 @@ public class InventoryBag<T> implements IBag {
 	}
 
 	@Override
-	public Object removeByIndex(int index) {
+	public T removeByIndex(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Object remove() {
+	public T remove() {
 		// TODO Auto-generated method stub
 		return null;
 	}

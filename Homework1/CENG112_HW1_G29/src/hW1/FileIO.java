@@ -9,7 +9,7 @@ public class FileIO {
 	public static InventoryBag<Item> readInventory(){
 		
 		BufferedReader inputStream;
-		InventoryBag<> inventoryBag = new InventoryBag;
+		InventoryBag<Item> inventoryBag = new InventoryBag<>();
 		
 		try {
 			
@@ -23,7 +23,7 @@ public class FileIO {
 				String item_compartment = line_tokens[1];
 				int item_weight = Integer.parseInt(line_tokens[2]);
 				Item item = new Item(item_name,item_compartment,item_weight);
-				
+				inventoryBag.add(item);
 				
 				
 				if(fileLine != null) {
@@ -48,7 +48,7 @@ public class FileIO {
 		}
 		
 		
-		return
+		return inventoryBag;
 		
 	}
 
