@@ -7,7 +7,7 @@ public class InventoryBag<T> implements IBag<T> {
 	
 	@SuppressWarnings("unchecked")
 	InventoryBag() {
-		BagArr  (T[]) new Object[20]; //Initialize the bag array as fixed size as of now
+		BagArr = (T[]) new Object[20]; //Initialize the bag array as fixed size as of now
 	}
 
 	@Override
