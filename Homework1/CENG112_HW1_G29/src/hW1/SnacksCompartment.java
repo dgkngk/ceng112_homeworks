@@ -121,8 +121,8 @@ public class SnacksCompartment implements IBag<Item>{
 	@Override
 	public void displayItems() {
 		int w = 0;
-		for(Item i: BagArr) 
-			w += i.getWeight();
+		for(int i=0; i < number_entries;i++) 
+			w += BagArr[i].getWeight();
 		System.out.println((this.MAX_SIZE - w) + "grams.");
 	}
 

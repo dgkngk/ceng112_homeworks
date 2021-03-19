@@ -87,9 +87,9 @@ public class ShoppingBasket<T> implements IBag<T> {
 
 	@Override
 	public T remove() {//removes the last item
+		number_entries--;
 		T tmp = (T) BagArr[number_entries];
 		BagArr[number_entries] = null;
-		number_entries--;
 		return tmp;
 	}
 
@@ -122,10 +122,8 @@ public class ShoppingBasket<T> implements IBag<T> {
 
 	@Override
 	public void displayItems() {
-		int ctr = 0;
-		for(@SuppressWarnings("unused") T i : BagArr) {
-			ctr++;
-			System.out.println(BagArr[ctr].toString().split("  ")[0]+",");
+		for(int i = 0; i < number_entries; i++ ) {
+			System.out.println(BagArr[i].toString().split("  ")[0]+",");
 		}
 	}
 
