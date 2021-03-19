@@ -85,9 +85,10 @@ public class BevaragesCompartment implements IBag<Item>{
 
 	@Override
 	public Item remove() {//removes the last item
+		number_entries--;
 		Item tmp = BagArr[number_entries];
 		BagArr[number_entries] = null;
-		number_entries--;
+		
 		return tmp;
 	}
 

@@ -12,7 +12,7 @@ public class ShoppingApp {
 		FileIO io_Object = new FileIO();
 		Item[] inventoryBag = io_Object.readInventory().toArray();
 		
-		ShoppingBasket shoppingBasket = new ShoppingBasket();
+		ShoppingBasket<Item> shoppingBasket = new ShoppingBasket<Item>();
 		
 		VegetablesFruitsCompartment vf_Bag = new VegetablesFruitsCompartment();
 		BevaragesCompartment b_Bag = new BevaragesCompartment();
@@ -85,7 +85,8 @@ public class ShoppingApp {
 		
 					if(choice==2) {
 						for(int i=0; i<shoppingBasket.getItemCount();i++) {
-							System.out.println("Basket contains:"+shoppingBasket); //burada display kullanýlmalý sanýrým
+							System.out.print("Basket contains:");
+							shoppingBasket.displayItems();
 							}
 						
 						continue;
@@ -151,6 +152,14 @@ public class ShoppingApp {
 			
 			if (choice == 2) {
 				System.out.println("Remaining capacities of each compartments:");
+				System.out.print("Vegetables and Fruits : ");
+				vf_Bag.displayItems();
+				System.out.print("Meats:");
+				m_Bag.displayItems();
+				System.out.print("Beverages:");
+				b_Bag.displayItems();
+				System.out.print("Snacks:");
+				s_Bag.displayItems();
 				continue;
 			}
 			
