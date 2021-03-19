@@ -120,8 +120,10 @@ public class SnacksCompartment implements IBag<Item>{
 
 	@Override
 	public void displayItems() {
-		// TODO Auto-generated method stub
-		
+		int w = 0;
+		for(Item i: BagArr) 
+			w += i.getWeight();
+		System.out.println((this.MAX_SIZE - w) + "grams.");
 	}
 
 	@Override
