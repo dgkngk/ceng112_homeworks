@@ -57,6 +57,15 @@ public class ShoppingApp {
 							else {
 								System.out.println("Basket is full now\r\n"
 										+"You cannot add any more items to the basket\r\n");
+								/*burada basket içindeki arraylerin compartmanýna ulaþýp ona göre transfer 
+								 * yapmamýz ve basketi boþatmamýz gerekiyor. Ancak þu an  basket 
+								 * içindeki ürünleri elde etmemizi saðlayan bir method yok.
+								 * Ben þöyle düþündüm interface içine birde toArray ekleyip to array ile bütün implement eden 
+								 * classlarda bir array dönüþümü saðlayýp bagler içindeki itemlere o þekilde rahatlýkla ulaþabiliriz.
+								 * 
+								 * Sence? böyle mi yapalým yoksa  eldeki methodlarla ulaþabileceðimiz bir yol var mý?
+								 * 
+								 */
 								break;}
 							}
 						else {
@@ -68,7 +77,7 @@ public class ShoppingApp {
 		
 					if(choice==2) {
 						for(int i=0; i<shoppingBasket.getItemCount();i++) {
-							System.out.println("Basket contains:"+shoppingBasket); //burda display kullanýlmalý sanýrým
+							System.out.println("Basket contains:"+shoppingBasket); //burada display kullanýlmalý sanýrým
 							}
 						
 						continue;
