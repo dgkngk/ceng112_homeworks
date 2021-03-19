@@ -8,9 +8,10 @@ public class ShoppingBasket<T> implements IBag<T> {
 	private int number_entries;
 	public final int MAX_SIZE = 2000;
 	
+	@SuppressWarnings("unchecked")
 	public ShoppingBasket() {
 
-		BagArr = (T[]) new Item[20]; //Initialize the bag array as fixed size as of now
+		BagArr = (T[]) new Item[20]; //Initialise the bag array as fixed size as of now
 	    number_entries=0;
 
 	}
@@ -62,7 +63,7 @@ public class ShoppingBasket<T> implements IBag<T> {
 	}
 
 	@Override
-	public boolean transferTo(IBag targetBag, T item) {
+	public boolean transferTo(IBag<T> targetBag, T item) {
 		if((item != null)&&(targetBag != null))
 			return targetBag.add(item);		
 		return false;
@@ -121,8 +122,11 @@ public class ShoppingBasket<T> implements IBag<T> {
 
 	@Override
 	public void displayItems() {
-		// TODO Auto-generated method stub
-		
+		int ctr = 0;
+		for(@SuppressWarnings("unused") T i : BagArr) {
+			ctr++;
+			System.out.println(BagArr[ctr].toString().split("  ")[0]+",");
+		}
 	}
 
 	@Override
