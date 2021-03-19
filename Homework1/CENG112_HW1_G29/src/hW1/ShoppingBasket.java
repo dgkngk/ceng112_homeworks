@@ -1,20 +1,22 @@
 package hW1;
 
-public class ShoppingBasket implements IBag<Item> {
+public class ShoppingBasket<T> implements IBag<T> {
 	
 	//Just going to reuse some of our code
 	
-	private Item[] BagArr;
+	private T[] BagArr;
 	private int number_entries;
 	public final int MAX_SIZE = 2000;
 	
 	public ShoppingBasket() {
-		BagArr = (Item[]) new Item[20]; //Initialise the bag array as fixed size as of now
-	    number_entries = 0;
+
+		BagArr = (T[]) new Item[20]; //Initialize the bag array as fixed size as of now
+	    number_entries=0;
+
 	}
 
 	@Override
-	public boolean add(Item newItem) {
+	public boolean add(T newItem) {
 		
 		boolean add_result=true;
 		if(isFull()) {
@@ -50,9 +52,9 @@ public class ShoppingBasket implements IBag<Item> {
 	}
 
 	@Override
-	public boolean contains(Item item) {
+	public boolean contains(T item) {
 		
-		for(Item i: BagArr){
+		for(T i: BagArr){
 			if(i.equals(item))//return true if finds something that is equal
 				return true;
 		}
@@ -60,21 +62,19 @@ public class ShoppingBasket implements IBag<Item> {
 	}
 
 	@Override
-	public boolean transferTo(IBag<Item> targetBag, Item item) {
-		if((item != null)&&(targetBag != null)) {
-			this.remove(item);
-			return targetBag.add(item);	
-		}
+	public boolean transferTo(IBag targetBag, T item) {
+		if((item != null)&&(targetBag != null))
+			return targetBag.add(item);		
 		return false;
 	}
 
 	@Override
-	public Item removeByIndex(int index) {
+	public T removeByIndex(int index) {
 		if(index<0 || index>20)
 			return null;
-		Item item = BagArr[index];
+		T item = BagArr[index];
 		BagArr[index] = null;
-		Item tmp = null;
+		T tmp = null;
 		for (int i = index; i < number_entries-1 ;i++) {//shifting all entries to the left
 			tmp = BagArr[i+1];
 			BagArr[i] = tmp;
@@ -85,15 +85,15 @@ public class ShoppingBasket implements IBag<Item> {
 	}
 
 	@Override
-	public Item remove() {//removes the last item
-		Item tmp = BagArr[number_entries];
+	public T remove() {//removes the last item
+		T tmp = (T) BagArr[number_entries];
 		BagArr[number_entries] = null;
 		number_entries--;
 		return tmp;
 	}
 
 	@Override
-	public Item remove(Item item) {
+	public T remove(T item) {
 		if(this.contains(item)) {
 			for(int i = 0; i < number_entries; i++){
 				if(BagArr[i].equals(item))
@@ -109,7 +109,7 @@ public class ShoppingBasket implements IBag<Item> {
 	}
 
 	@Override
-	public int getIndexOf(Item item) {
+	public int getIndexOf(T item) {
 		if(this.contains(item)) {
 			for(int i = 0; i < 20; i++){
 				if(BagArr[i].equals(item))

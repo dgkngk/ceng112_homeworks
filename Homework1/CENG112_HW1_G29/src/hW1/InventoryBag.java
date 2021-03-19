@@ -1,13 +1,6 @@
 package hW1;
-/*
- * This class should not implement IBag because this class is not in homework mandatory classes so we can build inventoryBag class
- * as we want.
- * 
- * Should an method that get item according to index of item or we can use toArray class return an array then reach item this new array
- * 
- * 
- */
-public class InventoryBag<T> /*implements IBag<T>*/ {
+
+public class InventoryBag<T> {
 
 	private T[] BagArr;
 	private int number_entries;
@@ -65,4 +58,5 @@ public class InventoryBag<T> /*implements IBag<T>*/ {
 		}
 		return result;
 	}
+
 }

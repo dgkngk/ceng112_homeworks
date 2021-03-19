@@ -10,10 +10,11 @@ public class ShoppingApp {
 		
 		
 		FileIO io_Object = new FileIO();
-		InventoryBag inventoryBag = io_Object.readInventory();
-		
+		Item[] inventoryBag = io_Object.readInventory().toArray();
+		ShoppingBasket shoppingBasket = new ShoppingBasket();
 		Scanner keyboard = new Scanner(System.in);
 		int choice;
+		int basket_weight=0;
 		System.out.println("Welcome to The Shopping App!");
 		
 		
@@ -34,15 +35,42 @@ public class ShoppingApp {
 							+ "[1]Add an item to the basket\r\n"
 							+ "[2]See the basket\r\n"
 							+ "[3]Finish shopping");
+					System.out.println("Your choice:");
 					choice = keyboard.nextInt();
 					if(choice==1) {
 						System.out.println("Please select an item:");
+						for(int i=0; i<inventoryBag.length;i++) {
+							
+							System.out.println("[" + (i+1) + "]" + inventoryBag[i].getName());
+							}
+						System.out.println("Your choice:");
+						int item_index = keyboard.nextInt();
+						Item item = inventoryBag[(item_index)-1];
 						
-						continue;
+						if(basket_weight < shoppingBasket.MAX_SIZE) {
+							shoppingBasket.add(item);
+							System.out.println(item.getName() + " is added to the basket");
+							basket_weight += item.getWeight();
+							if(basket_weight < shoppingBasket.MAX_SIZE) {
+								continue;
+							}
+							else {
+								System.out.println("Basket is full now\r\n"
+										+"You cannot add any more items to the basket\r\n");
+								break;}
+							}
+						else {
+							
+							System.out.println("Basket is full now\r\n"
+									+"You cannot add any more items to the basket\r\n");
+							break;}
 						}
 		
 					if(choice==2) {
-						System.out.println("Basket contains:");
+						for(int i=0; i<shoppingBasket.getItemCount();i++) {
+							System.out.println("Basket contains:"+shoppingBasket); //burda display kullanýlmalý sanýrým
+							}
+						
 						continue;
 					}
 					if(choice==3) {break;}
