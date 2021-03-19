@@ -11,7 +11,7 @@ public class InventoryBag<T> {
 	    number_entries=0;
 	}
 
-	//@Override
+
 	public boolean add(T newItem) { 
 		
 		boolean add_result=true;
@@ -27,7 +27,6 @@ public class InventoryBag<T> {
 		
 	}
 
-	//@Override
 	public boolean isEmpty() {  
 		boolean is_empty = false;
 		

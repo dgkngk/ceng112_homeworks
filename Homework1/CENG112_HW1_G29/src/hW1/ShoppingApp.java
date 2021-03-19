@@ -11,16 +11,38 @@ public class ShoppingApp {
 		
 		FileIO io_Object = new FileIO();
 		Item[] inventoryBag = io_Object.readInventory().toArray();
+		
 		ShoppingBasket shoppingBasket = new ShoppingBasket();
+		
+		VegetablesFruitsCompartment vf_Bag = new VegetablesFruitsCompartment();
+		BevaragesCompartment b_Bag = new BevaragesCompartment();
+		MeatsCompartment m_Bag = new MeatsCompartment();
+		SnacksCompartment s_Bag = new SnacksCompartment();
+		
+		
 		Scanner keyboard = new Scanner(System.in);
 		int choice;
-		int basket_weight=0;
+		
+		
+		
+		// fridge is empty:
+		int vf_weight = 0 ; 
+		int m_weight = 0 ; 
+		int b_weight = 0 ; 
+		int s_weight = 0; 
+		
+	
+		
+		
 		System.out.println("Welcome to The Shopping App!");
 		
 		
 		
 		
 		while (true) {
+			
+			//basket is empty:
+			int basket_weight= 0 ;
 			
 			System.out.println("Please select an option:\r\n"
 					+ "[1]Go to shopping\r\n"
@@ -46,33 +68,19 @@ public class ShoppingApp {
 						System.out.println("Your choice:");
 						int item_index = keyboard.nextInt();
 						Item item = inventoryBag[(item_index)-1];
-						
+						shoppingBasket.add(item);
+						System.out.println(item.getName() + " is added to the basket");
+						basket_weight += item.getWeight();
 						if(basket_weight < shoppingBasket.MAX_SIZE) {
-							shoppingBasket.add(item);
-							System.out.println(item.getName() + " is added to the basket");
-							basket_weight += item.getWeight();
-							if(basket_weight < shoppingBasket.MAX_SIZE) {
-								continue;
-							}
-							else {
-								System.out.println("Basket is full now\r\n"
-										+"You cannot add any more items to the basket\r\n");
-								/*burada basket içindeki arraylerin compartmanýna ulaþýp ona göre transfer 
-								 * yapmamýz ve basketi boþatmamýz gerekiyor. Ancak þu an  basket 
-								 * içindeki ürünleri elde etmemizi saðlayan bir method yok.
-								 * Ben þöyle düþündüm interface içine birde toArray ekleyip to array ile bütün implement eden 
-								 * classlarda bir array dönüþümü saðlayýp bagler içindeki itemlere o þekilde rahatlýkla ulaþabiliriz.
-								 * 
-								 * Sence? böyle mi yapalým yoksa  eldeki methodlarla ulaþabileceðimiz bir yol var mý?
-								 * 
-								 */
-								break;}
-							}
+							continue;
+						}
 						else {
-							
 							System.out.println("Basket is full now\r\n"
-									+"You cannot add any more items to the basket\r\n");
-							break;}
+									+"You cannot add any more items to the basket\r\n"
+									+"Shopping is finished and going to fill the fridge\r\n");
+							choice=3;
+						}
+						
 						}
 		
 					if(choice==2) {
@@ -82,7 +90,60 @@ public class ShoppingApp {
 						
 						continue;
 					}
-					if(choice==3) {break;}
+					if(choice==3) {
+						while(shoppingBasket.getItemCount() != 0) {
+							Item basket_item = (Item) shoppingBasket.remove();
+							System.out.println(basket_item.getCompartment());
+							String compartment_of_item = basket_item.getCompartment();
+						 
+						     if (compartment_of_item.equals("vegetables and fruits")) {
+						    	 if(vf_weight < vf_Bag.MAX_SIZE) {
+						    		 shoppingBasket.transferTo(vf_Bag, basket_item);
+						    		 vf_weight += basket_item.getWeight();
+						    	 }
+						    	 else {
+						    		 System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		 
+						    		 
+						    	 }
+						    }
+						
+						    else if (compartment_of_item.equals("meats")) {
+						    	if(m_weight < m_Bag.MAX_SIZE) {
+						    		shoppingBasket.transferTo(m_Bag, basket_item);
+						    		m_weight += basket_item.getWeight();
+						    	}
+						    	else {
+						    		System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		 
+						    		
+						    	}
+						    }
+						    else if (compartment_of_item.equals("beverages")) {
+						    	if(b_weight < b_Bag.MAX_SIZE) {
+						    		shoppingBasket.transferTo(b_Bag, basket_item);
+						    		b_weight += basket_item.getWeight();
+						    	}
+						    	else {
+						    		System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		
+						    		
+						    	}
+						    }
+						    else if (compartment_of_item.equals("snacks")) {
+						    	if(s_weight < s_Bag.MAX_SIZE) {
+						    		shoppingBasket.transferTo(s_Bag, basket_item);
+						    		s_weight += basket_item.getWeight();
+						    	}
+						    	else {
+						    		System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		
+						    		
+						    	}
+						    }
+						}
+						break;
+						}
 					}
 				continue;
 			}
@@ -93,7 +154,9 @@ public class ShoppingApp {
 				continue;
 			}
 			
-			if(choice == 3) {break;}
+			if(choice == 3) {
+				break;
+			}
 			
 			
 			
