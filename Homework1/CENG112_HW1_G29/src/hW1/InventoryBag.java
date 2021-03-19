@@ -14,7 +14,7 @@ public class InventoryBag<T> /*implements IBag<T>*/ {
 	
 	@SuppressWarnings("unchecked")
 	public InventoryBag() {
-		BagArr = (T[]) new Item[20]; //Initialize the bag array as fixed size as of now
+		BagArr = (T[]) new Item[20]; //Initialise the bag array as fixed size as of now
 	    number_entries=0;
 	}
 
@@ -65,62 +65,4 @@ public class InventoryBag<T> /*implements IBag<T>*/ {
 		}
 		return result;
 	}
-	
-	
-	
-/*
-	@Override
-	public boolean contains(Object item) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean transferTo(IBag targetBag, Object item) {
-		
-		return false;
-	}
-
-	@Override
-	public T removeByIndex(int index) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public T remove() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Object remove(Object item) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int getItemCount() {
-		
-		return number_entries;
-	}
-
-	@Override
-	public int getIndexOf(Object item) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void displayItems() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void dump() {
-		// TODO Auto-generated method stub
-		
-	}
-*/
 }

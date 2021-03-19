@@ -6,10 +6,11 @@ public class ShoppingBasket implements IBag<Item> {
 	
 	private Item[] BagArr;
 	private int number_entries;
+	public final int MAX_SIZE = 2000;
 	
 	public ShoppingBasket() {
 		BagArr = (Item[]) new Item[20]; //Initialise the bag array as fixed size as of now
-	    number_entries=0;
+	    number_entries = 0;
 	}
 
 	@Override
@@ -60,8 +61,10 @@ public class ShoppingBasket implements IBag<Item> {
 
 	@Override
 	public boolean transferTo(IBag<Item> targetBag, Item item) {
-		if((item != null)&&(targetBag != null))
-			return targetBag.add(item);		
+		if((item != null)&&(targetBag != null)) {
+			this.remove(item);
+			return targetBag.add(item);	
+		}
 		return false;
 	}
 
