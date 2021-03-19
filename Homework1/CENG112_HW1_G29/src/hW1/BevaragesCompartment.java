@@ -124,7 +124,7 @@ public class BevaragesCompartment implements IBag<Item>{
 		int w = 0;
 		for(int i=0; i < number_entries;i++) 
 			w += BagArr[i].getWeight();
-		System.out.println((this.MAX_SIZE - w) + "grams.");
+		System.out.println((this.MAX_SIZE - w) + "  grams.");
 	}
 
 	@Override

@@ -44,7 +44,7 @@ public class ShoppingApp {
 			//basket is empty:
 			int basket_weight= 0 ;
 			
-			System.out.println("Please select an option:\r\n"
+			System.out.println("\nPlease select an option:\r\n"
 					+ "[1]Go to shopping\r\n"
 					+ "[2]See the status of the fridge\r\n"
 					+ "[3]Exit");
@@ -53,7 +53,7 @@ public class ShoppingApp {
 			
 			if (choice == 1) {
 				while(true) {
-					System.out.println("Please select an option:\r\n"
+					System.out.println("\nPlease select an option:\r\n"
 							+ "[1]Add an item to the basket\r\n"
 							+ "[2]See the basket\r\n"
 							+ "[3]Finish shopping");
@@ -75,16 +75,16 @@ public class ShoppingApp {
 							continue;
 						}
 						else {
-							System.out.println("Basket is full now\r\n"
+							System.out.println("\n *****Basket is full now!!\r\n"
 									+"You cannot add any more items to the basket\r\n"
-									+"Shopping is finished and going to fill the fridge\r\n");
+									);
 							choice=3;
 						}
 						
 						}
 		
 					if(choice==2) {
-						for(int i=0; i<shoppingBasket.getItemCount();i++) {
+						{
 							System.out.print("Basket contains:");
 							shoppingBasket.displayItems();
 							}
@@ -92,9 +92,9 @@ public class ShoppingApp {
 						continue;
 					}
 					if(choice==3) {
+						System.out.println("Shopping is finished and going to fill the fridge...");
 						while(shoppingBasket.getItemCount() != 0) {
 							Item basket_item = (Item) shoppingBasket.remove();
-							System.out.println(basket_item.getCompartment());
 							String compartment_of_item = basket_item.getCompartment();
 						 
 						     if (compartment_of_item.equals("vegetables and fruits")) {
@@ -103,7 +103,7 @@ public class ShoppingApp {
 						    		 vf_weight += basket_item.getWeight();
 						    	 }
 						    	 else {
-						    		 System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		 System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
 						    		 
 						    		 
 						    	 }
@@ -115,7 +115,7 @@ public class ShoppingApp {
 						    		m_weight += basket_item.getWeight();
 						    	}
 						    	else {
-						    		System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
 						    		 
 						    		
 						    	}
@@ -126,7 +126,7 @@ public class ShoppingApp {
 						    		b_weight += basket_item.getWeight();
 						    	}
 						    	else {
-						    		System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
 						    		
 						    		
 						    	}
@@ -137,7 +137,7 @@ public class ShoppingApp {
 						    		s_weight += basket_item.getWeight();
 						    	}
 						    	else {
-						    		System.out.println(basket_item.getName() + " cannot be added to the fridge");
+						    		System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
 						    		
 						    		
 						    	}
@@ -151,19 +151,20 @@ public class ShoppingApp {
 			
 			
 			if (choice == 2) {
-				System.out.println("Remaining capacities of each compartments:");
+				System.out.println("Remaining capacities of each compartments:\n");
 				System.out.print("Vegetables and Fruits : ");
 				vf_Bag.displayItems();
-				System.out.print("Meats:");
+				System.out.print("Meats : ");
 				m_Bag.displayItems();
-				System.out.print("Beverages:");
+				System.out.print("Beverages : ");
 				b_Bag.displayItems();
-				System.out.print("Snacks:");
+				System.out.print("Snacks : ");
 				s_Bag.displayItems();
 				continue;
 			}
 			
 			if(choice == 3) {
+				System.out.println("Exit...");
 				break;
 			}
 			
