@@ -1,7 +1,7 @@
 package hW1;
 
 import java.io.*;
-import java.util.*;
+//import java.util.*;
 /*
  * FileIO finished.Can you check if there is any error?
  */
@@ -16,7 +16,7 @@ public class FileIO {
 		try {
 			
 			
-			inputStream = new BufferedReader(new FileReader("C:\\Users\\kivi\\Documents\\GitHub\\ceng112_homeworks\\Homework1\\CENG112_HW1_G29\\inventory.txt"));
+			inputStream = new BufferedReader(new FileReader(System.getProperty("user.dir")+"\\inventory.txt"));//finding the inventory file from working directory
 			
 			while(true) {
 				String fileLine = inputStream.readLine();

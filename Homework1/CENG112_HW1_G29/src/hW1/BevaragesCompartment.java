@@ -1,5 +1,5 @@
 package hW1;
 
-public class BevaragesCompartment implements IBag{
+public class BevaragesCompartment implements IBag<Item>{
 
 }

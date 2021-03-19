@@ -1,5 +1,5 @@
 package hW1;
-//equals method eksik eklenmeli
+//equals method eksik eklenmeli-eklendi
 
 public class Item {
 	
@@ -34,11 +34,29 @@ public class Item {
 	}
 	
 	public String toString() {
-		
 		return(item_name+ "  " + compartment_item + "  " + item_weight); 
 	}
 	
-	
+    public boolean equals(Item comparable) {//string comparison for names, is there a need to compare weights or compartments?
+    	
+    	boolean eq = false;
+    	String aString = (String) comparable.getName();  
+        int n = item_name.length();  
+        if (n == aString.length()) {  
+            char v1[] = item_name.toCharArray();  
+            char v2[] = aString.toCharArray();  
+            int i = 0;  
+            while (n-- != 0) {  
+                if (v1[i] != v2[i]) {
+                        eq = false;
+                        return eq;
+                }
+                i++;  
+            }
+            eq = true;
+        }
+        return eq;  
+    }  
 }
 
 

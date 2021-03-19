@@ -14,7 +14,7 @@ public class InventoryBag<T> /*implements IBag<T>*/ {
 	
 	@SuppressWarnings("unchecked")
 	public InventoryBag() {
-		BagArr = (T[]) new Object[20]; //Initialize the bag array as fixed size as of now
+		BagArr = (T[]) new Item[20]; //Initialize the bag array as fixed size as of now
 	    number_entries=0;
 	}
 
@@ -59,7 +59,7 @@ public class InventoryBag<T> /*implements IBag<T>*/ {
 	@SuppressWarnings("unchecked")
 	public T[] toArray() {
 		
-		T[] result = (T[]) new Object[number_entries];
+		T[] result = (T[]) new Item[number_entries];
 		for (int i=0; i<number_entries; i++) {
 			result[i]=BagArr[i];
 		}
