@@ -1,7 +1,7 @@
 package hW1;
-//this interface is ready
+
 public interface IBag<T> {
-	
+	//a bag interface as provided in the homework folder
 	public boolean add(T newItem);
 	public boolean isEmpty();
 	public boolean isFull();
@@ -15,3 +15,10 @@ public interface IBag<T> {
 	public void displayItems();
 	public void dump();
 }
+/* We were allowed to not use some of the functions, but as it wasn't clarified 
+ * that we don't have to implement all the functions, we decided to implement 
+ * them even if they weren't used. Specifically the dump() function. We didn't use
+ * it but we did implement it.
+ * 
+ * */
+ 

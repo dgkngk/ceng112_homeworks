@@ -1,33 +1,32 @@
 package hW1;
 
-public class SnacksCompartment implements IBag<Item>{
-	//Just going to reuse some of our code
+public class SnacksCompartment<T> implements IBag<T>{
 	
-	private Item[] BagArr;
+	private T[] BagArr;
 	private int number_entries;
 	public final int MAX_SIZE = 2000;
 	
+	@SuppressWarnings("unchecked")
 	public SnacksCompartment() {
-		BagArr = (Item[]) new Item[20]; //Initialise the bag array as fixed size as of now
+		BagArr = (T[]) new Item[20]; //Initialise the bag array as fixed size as of now
 	    number_entries = 0;
 	}
 
 	@Override
-	public boolean add(Item newItem) {
-		
+	public boolean add(T newItem) {//adding new item
 		boolean add_result=true;
 		if(isFull()) {
 			add_result=false;
 		}
 		else {
-			BagArr[number_entries] = newItem;
-			number_entries++;		
+			BagArr[number_entries] = newItem;//if bag isn't full, enter the newItem in the index of number_entries
+			number_entries++;//incrementing number of entries		
 		}
 		return add_result;
 	}
 
 	@Override
-	public boolean isEmpty() {
+	public boolean isEmpty() {//counting entries, when 0, returning true
 		
 		boolean is_empty = false;
 		if (number_entries==0) {
@@ -38,10 +37,10 @@ public class SnacksCompartment implements IBag<Item>{
 	}
 
 	@Override
-	public boolean isFull() {
+	public boolean isFull() {//probably never will return true in normal conditions, but here it is
 		
 		boolean is_full = false;
-		if (number_entries>=BagArr.length) {
+		if (number_entries>=BagArr.length) {//counting entries, when over 20, returning true
 			is_full=true;
 			return is_full;
 		}
@@ -49,17 +48,17 @@ public class SnacksCompartment implements IBag<Item>{
 	}
 
 	@Override
-	public boolean contains(Item item) {
+	public boolean contains(T item) {//return true if finds something that is equal
 		
-		for(Item i: BagArr){
-			if(i.equals(item))//return true if finds something that is equal
+		for(int i = 0; i <number_entries ; i++ ){
+			if(BagArr[i].equals(item))
 				return true;
 		}
 		return false;
 	}
 
 	@Override
-	public boolean transferTo(IBag<Item> targetBag, Item item) {
+	public boolean transferTo(IBag<T> targetBag, T item) {//if target bag is not empty, and the item is not null, adds it to the target bag
 		if((item != null)&&(targetBag != null)) {
 			this.remove(item);
 			return targetBag.add(item);	
@@ -68,12 +67,12 @@ public class SnacksCompartment implements IBag<Item>{
 	}
 
 	@Override
-	public Item removeByIndex(int index) {
-		if(index<0 || index>20)
+	public T removeByIndex(int index) {//removes the entry in the index
+		if(index<0 || index>20)//return null if out of bounds
 			return null;
-		Item item = BagArr[index];
+		T item = BagArr[index];
 		BagArr[index] = null;
-		Item tmp = null;
+		T tmp = null;
 		for (int i = index; i < number_entries-1 ;i++) {//shifting all entries to the left
 			tmp = BagArr[i+1];
 			BagArr[i] = tmp;
@@ -84,32 +83,31 @@ public class SnacksCompartment implements IBag<Item>{
 	}
 
 	@Override
-	public Item remove() {//removes the last item
+	public T remove() {//removes the last item
 		number_entries--;
-		Item tmp = BagArr[number_entries];
+		T tmp = BagArr[number_entries];
 		BagArr[number_entries] = null;
 		
 		return tmp;
 	}
 
 	@Override
-	public Item remove(Item item) {
+	public T remove(T item) {//finds the specific item and removes it
 		if(this.contains(item)) {
-			for(int i = 0; i < number_entries; i++){
-				if(BagArr[i].equals(item))
-					return this.removeByIndex(i);
-			}
+			int i = this.getIndexOf(item);//get the index of specific item
+			if(BagArr[i].equals(item))
+				return this.removeByIndex(i);//remove it by index if contains
 		}
 		return null;
 	}
 
 	@Override
-	public int getItemCount() {
+	public int getItemCount() {//counts entries
 		return number_entries;
 	}
 
 	@Override
-	public int getIndexOf(Item item) {
+	public int getIndexOf(T item) {//gets the index of specific item
 		if(this.contains(item)) {
 			for(int i = 0; i < 20; i++){
 				if(BagArr[i].equals(item))
@@ -120,16 +118,15 @@ public class SnacksCompartment implements IBag<Item>{
 	}
 
 	@Override
-	public void displayItems() {
+	public void displayItems() {//displays the compartments remaining weight
 		int w = 0;
 		for(int i=0; i < number_entries;i++) 
-			w += BagArr[i].getWeight();
+			w += ((Item) BagArr[i]).getWeight();//typecast because this function is specialised to type Item 
 		System.out.println((this.MAX_SIZE - w) + "  grams.");
 	}
 
 	@Override
-	public void dump() {
-		
+	public void dump() {//nulls all the bag entries
 		for(int i=0;i < 20;i++)
 			BagArr[i] = null;
 	}
