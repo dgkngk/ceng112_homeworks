@@ -70,7 +70,7 @@ public class ShoppingApp {
 						}
 						else {
 							System.out.println("\n *****Basket is full now!!\r\n"
-									+"You cannot add any more items to the basket\r\n"
+									+"You cannot add any more items to the basket\n"
 									);
 							choice=3;
 						}
@@ -85,48 +85,52 @@ public class ShoppingApp {
 					}
 					
 					if(choice==3) {//filling the fridge
-						System.out.println("Shopping is finished and going to fill the fridge...");
-						while(shoppingBasket.getItemCount() != 0) {//while there is items in the basket
-							Item basket_item = (Item) shoppingBasket.remove();//popping last item in the basket
-							String compartment_of_item = basket_item.getCompartment();//looking for the items container in inventory
-						 
-						     if (compartment_of_item.equals("vegetables and fruits")) { //if veg and fruit
-						    	 if(vf_weight < vf_Bag.MAX_SIZE) {
-						    		 shoppingBasket.transferTo(vf_Bag, basket_item);
-						    		 vf_weight += basket_item.getWeight();
-						    	 }
-						    	 else {
-						    		 System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
-						    	 }
-						    }
-						
-						    else if (compartment_of_item.equals("meats")) {//if meat
-						    	if(m_weight < m_Bag.MAX_SIZE) {
-						    		shoppingBasket.transferTo(m_Bag, basket_item);
-						    		m_weight += basket_item.getWeight();
-						    	}
-						    	else {
-						    		System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
-						    	}
-						    }
-						    else if (compartment_of_item.equals("beverages")) {//if beverage
-						    	if(b_weight < b_Bag.MAX_SIZE) {
-						    		shoppingBasket.transferTo(b_Bag, basket_item);
-						    		b_weight += basket_item.getWeight();
-						    	}
-						    	else {
-						    		System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
-						    	}
-						    }
-						    else if (compartment_of_item.equals("snacks")) {//if snack
-						    	if(s_weight < s_Bag.MAX_SIZE) {
-						    		shoppingBasket.transferTo(s_Bag, basket_item);
-						    		s_weight += basket_item.getWeight();
-						    	}
-						    	else {
-						    		System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
-						    	}
-						    }
+						if(shoppingBasket.getItemCount()>0) {
+							System.out.print("Basket contains:");
+							shoppingBasket.displayItems();
+							System.out.println("\n\nShopping is finished and going to fill the fridge...");
+							while(shoppingBasket.getItemCount() != 0) {//while there is items in the basket
+								Item basket_item = (Item) shoppingBasket.remove();//popping last item in the basket
+								String compartment_of_item = basket_item.getCompartment();//looking for the items container in inventory
+								
+								if (compartment_of_item.equals("vegetables and fruits")) { //if veg and fruit
+									if(vf_weight < vf_Bag.MAX_SIZE) {
+										shoppingBasket.transferTo(vf_Bag, basket_item);
+										vf_weight += basket_item.getWeight();
+									}
+									else {
+										System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
+									}
+								}
+								
+								else if (compartment_of_item.equals("meats")) {//if meat
+									if(m_weight < m_Bag.MAX_SIZE) {
+										shoppingBasket.transferTo(m_Bag, basket_item);
+										m_weight += basket_item.getWeight();
+									}
+									else {
+										System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
+									}
+								}
+								else if (compartment_of_item.equals("beverages")) {//if beverage
+									if(b_weight < b_Bag.MAX_SIZE) {
+										shoppingBasket.transferTo(b_Bag, basket_item);
+										b_weight += basket_item.getWeight();
+									}
+									else {
+										System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
+									}
+								}
+								else if (compartment_of_item.equals("snacks")) {//if snack
+									if(s_weight < s_Bag.MAX_SIZE) {
+										shoppingBasket.transferTo(s_Bag, basket_item);
+										s_weight += basket_item.getWeight();
+									}
+									else {
+										System.out.println("\n******" + basket_item.getName() + " cannot be added to the fridge!!");
+									}
+								}
+							}
 						}
 						break;//ending filling fridge and quitting to main menu
 						}
