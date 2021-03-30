@@ -8,7 +8,7 @@ public class ShoppingBasket<T> implements IBag<T> {
 	
 	@SuppressWarnings("unchecked")
 	public ShoppingBasket() {
-		BagArr = (T[]) new Item[20]; //Initialise the bag array as fixed size,and of type Item
+		BagArr = (T[]) new Object[20]; //Initialise the bag array as fixed size,and of type Item
 	    number_entries=0;
 
 	}

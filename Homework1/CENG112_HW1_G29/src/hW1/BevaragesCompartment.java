@@ -8,7 +8,7 @@ public class BevaragesCompartment<T> implements IBag<T>{
 	
 	@SuppressWarnings("unchecked")
 	public BevaragesCompartment() {
-		BagArr = (T[]) new Item[20]; //Initialise the bag array as fixed size
+		BagArr = (T[]) new Object[20]; //Initialise the bag array as fixed size
 	    number_entries = 0;
 	}
 
