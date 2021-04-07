@@ -59,9 +59,7 @@ public class IZTECHEA {
 		    else if (user_index==1) {
 		    	
 		    	String storage_product = factoryLine.dequeue();	
-		    	switch(storage_product) {
-		    	     case "Sofa":
-		    	    	 sofaWarehouse.push(Sofa);
+		 
 		    		
 		    	
 		    	}
