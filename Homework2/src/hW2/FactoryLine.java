@@ -10,25 +10,20 @@ public class FactoryLine<T> implements IQueue<T>{
 	private int backIndex;
 	private boolean initialized = false;
 	private static final int defaultCapacity = 50;
-	private static final int maxCapacity = 1000;
+	private static final int maxCapacity = 10000;
 	
 	
-	
-	
-	public FactoryLine() {
-		
-		this(defaultCapacity);
-	}
 	
 	@SuppressWarnings("unchecked")
-	public FactoryLine(int initialCapacity) {
+	public FactoryLine() {
 		
-		//checkCapacity(initialCapacity);
-		
-		factoryLine = (T[]) new Object[initialCapacity+1];
-		
-		
+		factoryLine = (T[]) new Object[defaultCapacity+1];
+		frontIndex = 0;
+		backIndex = defaultCapacity;
+		initialized = true;
 	}
+	
+
 	
 	
 	public void enqueue(T newEntry) {
@@ -42,23 +37,25 @@ public class FactoryLine<T> implements IQueue<T>{
 		
 	}
 	
-	public T getFront() throws EmptyQueueException  {
+	public T getFront() /*throws EmptyQueueException*/  {
 		
 		//checkInitialization()	;
 		
 		if(isEmpty()){
-			throw new EmptyQueueException();
+			//throw new EmptyQueueException();
 			}
 		
 		else { return factoryLine[frontIndex];}
-		}
+		return null;
+		
+	}
 	
-	public T dequeue() throws EmptyQueueException {
+	public T dequeue() /*throws EmptyQueueException */{
 		
 		//checkInitialization()	;
 		
 		if(isEmpty()){
-			throw new EmptyQueueException();
+			//throw new EmptyQueueException();
 			}
 		
 		else {
@@ -68,6 +65,7 @@ public class FactoryLine<T> implements IQueue<T>{
 			frontIndex = (frontIndex+1) % factoryLine.length;
 			return front;
 		}
+		return null;
 		
 		
 	}
@@ -75,16 +73,7 @@ public class FactoryLine<T> implements IQueue<T>{
 	@SuppressWarnings("unchecked")
 	private void ensureCapacity() {
 		
-		/*????
-		 * if (topIndex == wareHouse.length-1) {
-			
-			int newSize = 2 * wareHouse.length;
-			//checkCapacity(newSize);
-			wareHouse = Arrays.copyOf(wareHouse, newSize);
-			
-			
-		}
-		 */
+	
 		
 		if (frontIndex == ((backIndex +2) % factoryLine.length)) {
 			

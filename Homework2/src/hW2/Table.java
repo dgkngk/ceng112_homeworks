@@ -1,6 +1,6 @@
 package hW2;
 
-public class Table implements IProduct{
+public class Table  implements IProduct{
 	
 	public boolean isManufactured(){
 		

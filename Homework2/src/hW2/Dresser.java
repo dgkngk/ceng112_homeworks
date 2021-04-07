@@ -1,6 +1,6 @@
 package hW2;
 
-public class Dresser implements IProduct {
+public class Dresser  implements IProduct {
 	
 	public boolean isManufactured(){
 		

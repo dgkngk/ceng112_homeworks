@@ -9,25 +9,19 @@ public class WareHouse<T> implements IStack<T> {
 	private int topIndex;
 	private boolean initialized = false;
 	private static final int defaultCapacity =50;
-	private static final int maxCapacity = 1000;
-	
-	public WareHouse() {
-		
-		this(defaultCapacity);
-	} 
+	private static final int maxCapacity = 10000;
 	
 	@SuppressWarnings("unchecked")
-	public WareHouse(int initialCapacity) {
+	public WareHouse() {
 		
-		//checkCapacity(initialCapacity);
-		
-		wareHouse = (T[])  new Object[initialCapacity];
+		wareHouse = (T[])  new Object[defaultCapacity];
 		topIndex = -1; 
 		initialized = true; //??
-		
-		
-		
-	}
+	} 
+	
+	
+	
+
 	
 	private void ensureCapacity() {
 		
@@ -71,6 +65,8 @@ public class WareHouse<T> implements IStack<T> {
 			}
 		else {return wareHouse[topIndex];}
 	}
+	
+	
 	public boolean isEmpty() {
 		
 		return false;

@@ -14,27 +14,61 @@ public class IZTECHEA {
 		System.out.println("Enter the number of random request cycles:");
 		choice = keyboard.nextInt();
 		
-		String[] products = {"Sofa","Bed","Chair","Dresser","Table","Bookcase"};
-		FactoryLine factoryLine = new FactoryLine();
+		String[] users = {"Marketing Analyst","Storage Chief", "Customer"};
 		
-				
+		Sofa sofa = new Sofa();
+		Bed bed = new Bed();
+		Chair chair = new Chair();
+		Dresser dresser = new Dresser();
+		Table table = new Table();
+		Bookcase bookcase = new Bookcase();
+		
+		IProduct[] products = {sofa, bed, chair, dresser, table, bookcase};
+		
+		FactoryLine<IProduct> factoryLine = new FactoryLine<IProduct>();
+		
+		WareHouse<Sofa> sofaWarehouse = new WareHouse<Sofa>();
+		WareHouse<Bed> bedWarehouse = new WareHouse<Bed>();
+		WareHouse<Chair> chairWarehouse = new WareHouse<Chair>();
+		WareHouse<Dresser> dresserWarehouse = new WareHouse<Dresser>();
+		WareHouse<Table> tableWarehouse = new WareHouse<Table>();
+		WareHouse<Bookcase> bookcaseWarehouse = new WareHouse<Bookcase>();
+		
+		
+		
 		while(choice != 0) {
 			
-			String product = null;
+			IProduct product = null; 
 			
-			int user =  rand.nextInt(3);
-			if (user==0) {
+		    int user_index = rand.nextInt(users.length);
+			
+		    if (user_index==0) {
 				
 				product = (products[rand.nextInt(products.length)]);
-				
-				
-				
+				factoryLine.enqueue(product);
+				boolean manufactured = product.isManufactured();
+				if (manufactured == true) {
+					System.out.println("%s requesting %s, SUCCESS, %s manufactured" + users[user_index] + product + product);
+				}
+				else {
+					System.out.println("%s requesting %s, FAIL, %s is not manufactured" + users[user_index] + product + product);
+				}
 				
 			}
-			else if (user==1) {
+			
+		    else if (user_index==1) {
+		    	
+		    	String storage_product = factoryLine.dequeue();	
+		    	switch(storage_product) {
+		    	     case "Sofa":
+		    	    	 sofaWarehouse.push(Sofa);
+		    		
+		    	
+		    	}
+		    	
 				
 			} 
-			else if (user==2) {
+			else if (user_index==2) {
 				
 				product = (products[rand.nextInt(products.length)]);
 				
