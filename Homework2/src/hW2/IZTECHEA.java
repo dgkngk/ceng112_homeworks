@@ -58,17 +58,39 @@ public class IZTECHEA {
 			
 		    else if (user_index==1) {
 		    	
-		    	String storage_product = factoryLine.dequeue();	
-		 
-		    		
-		    	
+		    	IProduct storage_product = factoryLine.dequeue();
+		    	if(storage_product.getClass() == products[0].getClass()) {
+		    		sofaWarehouse.push((Sofa) storage_product);
 		    	}
+		    	else if(storage_product.getClass() == products[1].getClass()) {
+		    		bedWarehouse.push((Bed) storage_product);
+		    	}
+		    	else if(storage_product.getClass() == products[2].getClass()) {
+		    		chairWarehouse.push((Chair) storage_product);
+		    	}
+		    	else if(storage_product.getClass() == products[3].getClass()) {
+		    		dresserWarehouse.push((Dresser) storage_product);
+		    	}
+		    	else if(storage_product.getClass() == products[4].getClass()) {
+		    		tableWarehouse.push((Table) storage_product);
+		    	}
+		    	else if(storage_product.getClass() == products[5].getClass()) {
+		    		bookcaseWarehouse.push((Bookcase) storage_product);
+		    	}
+		    	boolean manufactured = storage_product.isStored();
+	    		if (manufactured == true) {
+					System.out.println("%s requesting %s, SUCCESS, %s manufactured" + users[user_index] + storage_product.getClass().getName() + storage_product.getClass().getName());
+				}
+				else {
+					System.out.println("%s requesting %s, FAIL, %s is not manufactured" + users[user_index] + storage_product.getClass().getName() + storage_product.getClass().getName());
+				}
+		    }
 		    	
 				
-			} 
-			else if (user_index==2) {
+
+			else if (user_index == 2) {
 				
-				product = (products[rand.nextInt(products.length)]);
+				IProduct s_product = (products[rand.nextInt(products.length)]);
 				
 			}
 			
