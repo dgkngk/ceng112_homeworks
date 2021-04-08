@@ -23,6 +23,13 @@ public class FactoryLine<T> implements IQueue<T>{
 		initialized = true;
 	}
 	
+	
+	
+	public T getBack() {
+		
+		return factoryLine[backIndex];
+	}
+	
 
 	
 	

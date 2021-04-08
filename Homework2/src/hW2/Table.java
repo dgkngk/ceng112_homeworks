@@ -2,21 +2,27 @@ package hW2;
 
 public class Table  implements IProduct{
 	
-	public boolean isManufactured(){
+	public boolean isManufactured(FactoryLine<IProduct> factoryLine , IProduct product) {
 		
-		return false;
-	}
-
-	public boolean isStored(){
+		return (factoryLine.getBack().getClass()== product.getClass());
 		
-		return false;
 	}
-
-	public boolean isSold(){
+	public boolean isStored(WareHouse<IProduct> warehouse,IProduct product){
 		
-		return false;
+		return (warehouse.peek().getClass() == product.getClass());
+		
 	}
-
+	public boolean isSold(IStack<IProduct> warehouse){
+		
+		return !(warehouse.isEmpty());
+		
+	}
+	
+	public String getName() {
+		 
+		return ("Table");
+		
+	}
 
 
 }
