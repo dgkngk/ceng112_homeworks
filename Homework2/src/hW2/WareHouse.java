@@ -14,30 +14,25 @@ public class WareHouse<T> implements IStack<T> {
 	
 	@SuppressWarnings("unchecked")
 	public WareHouse() {
-		
 		wareHouse = (T[])  new Object[defaultCapacity];
 		topIndex = -1; 
 		elementNumber = 0;
-		initialized = true; //??
+		initialized = true;
 	} 
-	
-	
-	
-
 	
 	private void ensureCapacity() {
 		
 		if (topIndex == wareHouse.length-1) {
 			
 			int newSize = 2 * wareHouse.length;
-			//checkCapacity(newSize);
+			checkCap(newSize);
 			wareHouse = Arrays.copyOf(wareHouse, newSize);
 			}
 	}
 	
 	public void push(T newEntry) {
 		
-		//checkInitialization();
+		checkInit();
 		ensureCapacity();
 		
 		wareHouse[(topIndex)+1] = newEntry;
@@ -48,7 +43,7 @@ public class WareHouse<T> implements IStack<T> {
 	
 	public T pop() {
 		
-		//checkInitialization();
+		checkInit();
 		if(isEmpty()) {
 			throw new EmptyStackException();
 			}
@@ -56,7 +51,7 @@ public class WareHouse<T> implements IStack<T> {
 			
 			T top = wareHouse[topIndex]; 
 			wareHouse[(topIndex)] = null;
-			
+			elementNumber--;
 			topIndex--;
 			return top;
 		}
@@ -64,7 +59,7 @@ public class WareHouse<T> implements IStack<T> {
 	
 	public T peek() {
 		
-		//checkInitialization();
+		checkInit();
 		if (isEmpty()) {
 			throw new EmptyStackException();
 			}
@@ -75,20 +70,21 @@ public class WareHouse<T> implements IStack<T> {
 	
 	
 	public boolean isEmpty() {
-		
 		return (elementNumber == 0);
-		
-		
 	}
 	
 	public void clear() {
-		
-		for (int i=0; i<=elementNumber; i++) {
-			
-			pop();
-		}
+		for (int i=0; i<=elementNumber; i++) pop();
 	}
 	
+	public boolean checkInit() {
+		return this.initialized;
+	}
 	
-
+	public boolean checkCap(int size) {
+		return (size < maxCapacity);
+	}
+	public int getSize() {
+		return elementNumber;
+	}
 }

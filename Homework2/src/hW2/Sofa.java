@@ -2,20 +2,21 @@ package hW2;
 
 public class Sofa implements IProduct{
 
+	private boolean stored;
+	private boolean sold;
+	private boolean man;
+	
 	public boolean isManufactured(FactoryLine<IProduct> factoryLine , IProduct product) {
-		
-		return (factoryLine.getBack().getClass()== product.getClass());
-		
+		this.man = factoryLine.getBack().getClass() == product.getClass();
+		return this.man;
 	}
 	public boolean isStored(WareHouse<IProduct> warehouse,IProduct product){
-		
-		return (warehouse.peek().getClass() == product.getClass());
-		
+		this.stored =warehouse.peek().getClass() == product.getClass();
+		return this.stored;
 	}
-	public boolean isSold(IStack<IProduct> warehouse){
-		
-		return !(warehouse.isEmpty());
-		
+	public boolean isSold(FactoryLine<IProduct> soldThings, IProduct product){
+		this.sold = soldThings.getBack().getClass() == product.getClass();
+		return sold;
 	}
 	public String getName() {
 		 

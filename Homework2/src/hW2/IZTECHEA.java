@@ -1,10 +1,58 @@
 package hW2;
-
-
 import java.util.*;
 
 public class IZTECHEA {
-
+	
+	public static void printReport(FactoryLine<IProduct> queue, IProduct[] products, int queuetype) {
+		int sofa = 0,bed = 0,chair = 0,dresser = 0,table = 0,bookcase = 0;
+		
+		System.out.println("REPORT:\n");
+		
+		while(!queue.isEmpty()) {
+			IProduct product = null;
+			try {
+				product = queue.dequeue();
+			} catch (EmptyQueueException e) {
+				// do nothing
+				
+			}
+			if(product.getClass() == products[0].getClass()) {
+    			sofa++;
+			}
+			else if(product.getClass() == products[1].getClass()) {
+    			bed++;
+			}
+			else if(product.getClass() == products[2].getClass()) {
+    			chair++;
+			}
+			else if(product.getClass() == products[3].getClass()) {
+    			dresser++;
+			}
+			else if(product.getClass() == products[4].getClass()) {
+    			table++;
+			}
+			else if(product.getClass() == products[5].getClass()) {
+    			bookcase++;
+			}
+		}
+		if (queuetype == 0) {
+			System.out.println("Amount of sofa sold:" + sofa);
+			System.out.println("Amount of bed sold:" + bed);
+			System.out.println("Amount of chair sold:" + chair);
+			System.out.println("Amount of dresser sold:" + dresser);
+			System.out.println("Amount of table sold:" + table);
+			System.out.println("Amount of bookcase sold:" + bookcase);
+		}
+		else {
+			System.out.println("Amount of sofa in FactoryLine:" + sofa);
+			System.out.println("Amount of bed in FactoryLine:" + bed);
+			System.out.println("Amount of chair in FactoryLine:" + chair);
+			System.out.println("Amount of dresser in FactoryLine:" + dresser);
+			System.out.println("Amount of table in FactoryLine:" + table);
+			System.out.println("Amount of bookcase in FactoryLine:" + bookcase);
+		}
+	}
+	
 	public static void main(String[] args) {
 		
 		Random rand = new Random();
@@ -26,17 +74,15 @@ public class IZTECHEA {
 		IProduct[] products = {sofa, bed, chair, dresser, table, bookcase};
 		
 		FactoryLine<IProduct> factoryLine = new FactoryLine<IProduct>();
-		
+		FactoryLine<IProduct> soldThings = new FactoryLine<IProduct>();
+		WareHouse<IProduct> warehouse = new WareHouse<IProduct>();//copying warehouse for controlling
 		WareHouse<IProduct> sofaWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> bedWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> chairWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> dresserWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> tableWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> bookcaseWarehouse = new WareHouse<IProduct>();
-		
-		WareHouse<IProduct> warehouse = new WareHouse();
-		
-		
+
 		
 		while(choice != 0) {
 			
@@ -63,7 +109,13 @@ public class IZTECHEA {
 		    else if (user_index==1) {
 		    	
 		    	if (!(factoryLine.isEmpty())){
-		    		IProduct storage_product = factoryLine.dequeue();
+		    		IProduct storage_product = null;
+					try {
+						storage_product = factoryLine.dequeue();
+					} catch (EmptyQueueException e) {
+						// do nothing
+						
+					}
 		    		
 		    		if(storage_product.getClass() == products[0].getClass()) {
 		    			sofaWarehouse.push((Sofa) storage_product);
@@ -111,37 +163,83 @@ public class IZTECHEA {
 
 			else if (user_index == 2) {
 				
-				product = (products[rand.nextInt(products.length)]);
-				
-				if(product.getClass() == products[0].getClass()) {
-		    		warehouse = sofaWarehouse;
+				IProduct b_product = (products[rand.nextInt(products.length)]);
+				boolean sold = false;
+		    	if(b_product.getClass() == products[0].getClass()) {
+		    		try {
+			    		soldThings.enqueue(sofaWarehouse.pop());
+			    		sold = b_product.isSold(soldThings,b_product);
+		    		}
+		    		catch(EmptyStackException e)
+		    		{
+		    			sold = false;
+		    		}
 		    	}
-		    	else if(product.getClass() == products[1].getClass()) {
-		    		warehouse = bedWarehouse;
+		    	else if(b_product.getClass() == products[1].getClass()) {
+		    		try {
+		    		
+		    			soldThings.enqueue(bedWarehouse.pop());
+		    			sold = b_product.isSold(soldThings,b_product);
+		    		}
+		    		catch(EmptyStackException e)
+		    		{
+		    			sold = false;
+		    		}
 		    	}
-		    	else if(product.getClass() == products[2].getClass()) {
-		    		warehouse = chairWarehouse;
+		    	else if(b_product.getClass() == products[2].getClass()) {
+		    		try {
+		    			soldThings.enqueue(chairWarehouse.pop());
+		    			sold = b_product.isSold(soldThings,b_product);
+		    		}
+		    		catch(EmptyStackException e)
+		    		{
+		    			sold = false;
+		    		}
 		    	}
-		    	else if(product.getClass() == products[3].getClass()) {
-		    		warehouse = dresserWarehouse;
+		    	else if(b_product.getClass() == products[3].getClass()) {
+		    		try {
+		    			soldThings.enqueue(dresserWarehouse.pop());
+		    			sold = b_product.isSold(soldThings,b_product);
+		    		}
+		    		catch(EmptyStackException e)
+		    		{
+		    			sold = false;
+		    		}
 		    	}
-		    	else if(product.getClass() == products[4].getClass()) {
-		    		warehouse = tableWarehouse;
+		    	else if(b_product.getClass() == products[4].getClass()) {
+		    		try{
+		    			soldThings.enqueue(tableWarehouse.pop());
+		    			sold = b_product.isSold(soldThings,b_product);
+		    		}
+		    		catch(EmptyStackException e)
+		    		{
+		    			sold = false;
+		    		}
 		    	}
-		    	else if(product.getClass() == products[5].getClass()) {
-		    		warehouse = bookcaseWarehouse;
+		    	else if(b_product.getClass() == products[5].getClass()) {
+		    		try {
+		    			soldThings.enqueue(bookcaseWarehouse.pop());
+		    			sold = b_product.isSold(soldThings,b_product);
+		    		}
+		    		catch(EmptyStackException e)
+		    		{
+		    			sold = false;
+		    		}
+		    		
+		    	}
+		    	else {
+		    		sold = false;
 		    	}
 		    	
-		    	boolean sold = product.isSold(warehouse);
+		    	
 		    	if (sold == true) {
-		    		warehouse.pop();
-		    		System.out.println("\n"+users[user_index]+ " buying " + product.getName() +", SUCCESS, "
-		    		          + users[user_index]+" bought " + product.getName()+".");
+		    		System.out.println("\n"+users[user_index]+ " buying " + b_product.getName() +", SUCCESS, "
+		    		          + users[user_index]+" bought " + b_product.getName()+".");
 					
 				}
 				else {
-					System.out.println("\n"+ users[user_index]+ " buying " + product.getName() +", FAIL, "
-		    		           + product.getName()+ " warehouse empty.");
+					System.out.println("\n"+ users[user_index]+ " buying " + b_product.getName() +", FAIL, "
+		    		           + b_product.getName()+ " warehouse empty.");
 					
 				}
 		    	
@@ -150,6 +248,14 @@ public class IZTECHEA {
 			choice -=1;
 			
 		}
+		printReport(factoryLine,products,1);
+		System.out.println("\nAmount of sofa in Warehouse:" + sofaWarehouse.getSize());
+		System.out.println("Amount of bed in Warehouse:" + bedWarehouse.getSize());
+		System.out.println("Amount of chair in Warehouse:" + chairWarehouse.getSize());
+		System.out.println("Amount of dresser in Warehouse:" + dresserWarehouse.getSize());
+		System.out.println("Amount of table in Warehouse:" + tableWarehouse.getSize());
+		System.out.println("Amount of bookcase in Warehouse:" + bookcaseWarehouse.getSize()+"\n");
+		printReport(soldThings,products,0);
 		
 		keyboard.close();
 		

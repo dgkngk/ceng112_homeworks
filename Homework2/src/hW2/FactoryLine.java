@@ -1,7 +1,5 @@
 package hW2;
 
-import java.util.*;
-
 public class FactoryLine<T> implements IQueue<T>{
 	
 	
@@ -35,8 +33,7 @@ public class FactoryLine<T> implements IQueue<T>{
 	
 	public void enqueue(T newEntry) {
 		
-		//checkInitialization()	;
-		
+		checkInit();
 		ensureCapacity();
 		backIndex = (backIndex+1) % factoryLine.length;
 		factoryLine[backIndex] = newEntry;
@@ -44,25 +41,22 @@ public class FactoryLine<T> implements IQueue<T>{
 		
 	}
 	
-	public T getFront() /*throws EmptyQueueException*/  {
+	public T getFront() throws EmptyQueueException   {
 		
-		//checkInitialization()	;
+		checkInit()	;
 		
 		if(isEmpty()){
-			//throw new EmptyQueueException();
+			throw new EmptyQueueException();
 			}
 		
 		else { return factoryLine[frontIndex];}
-		return null;
-		
 	}
 	
-	public T dequeue() /*throws EmptyQueueException */{
+	public T dequeue() throws EmptyQueueException {
 		
-		//checkInitialization()	;
-		
+		checkInit();
 		if(isEmpty()){
-			//throw new EmptyQueueException();
+			throw new EmptyQueueException();
 			}
 		
 		else {
@@ -71,17 +65,13 @@ public class FactoryLine<T> implements IQueue<T>{
 			factoryLine[frontIndex] = null;
 			frontIndex = (frontIndex+1) % factoryLine.length;
 			return front;
-		}
-		return null;
-		
+		}	
 		
 	}
 	
 	@SuppressWarnings("unchecked")
 	private void ensureCapacity() {
-		
-	
-		
+
 		if (frontIndex == ((backIndex +2) % factoryLine.length)) {
 			
 			T[] oldLine = factoryLine;
@@ -113,4 +103,12 @@ public class FactoryLine<T> implements IQueue<T>{
 		return is_empty;
 	}
 
+	public boolean checkInit() {
+		return this.initialized;
+	}
+	
+	public boolean checkCap(int size) {
+		return (size < maxCapacity);
+	}
 }
+
