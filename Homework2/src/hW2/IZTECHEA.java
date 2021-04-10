@@ -1,12 +1,13 @@
 package hW2;
 import java.util.*;
-
+//main class
 public class IZTECHEA {
 	
+	        //method to write final report of products in factory line and report of sold products.
 	public static void printReport(FactoryLine<IProduct> queue, IProduct[] products, int queuetype) {
 		int sofa = 0,bed = 0,chair = 0,dresser = 0,table = 0,bookcase = 0;
 		
-		System.out.println("REPORT:\n");
+		
 		
 		while(!queue.isEmpty()) {
 			IProduct product = null;
@@ -44,6 +45,8 @@ public class IZTECHEA {
 			System.out.println("Amount of bookcase sold:" + bookcase);
 		}
 		else {
+			System.out.println("\nREPORT:\n");
+			
 			System.out.println("Amount of sofa in FactoryLine:" + sofa);
 			System.out.println("Amount of bed in FactoryLine:" + bed);
 			System.out.println("Amount of chair in FactoryLine:" + chair);
@@ -64,6 +67,7 @@ public class IZTECHEA {
 		
 		String[] users = {"Marketing Analyst","Storage Chief", "Customer"};
 		
+		//Products:
 		Sofa sofa = new Sofa();
 		Bed bed = new Bed();
 		Chair chair = new Chair();
@@ -73,10 +77,14 @@ public class IZTECHEA {
 		
 		IProduct[] products = {sofa, bed, chair, dresser, table, bookcase};
 		
-		FactoryLine<IProduct> factoryLine = new FactoryLine<IProduct>();
-		FactoryLine<IProduct> soldThings = new FactoryLine<IProduct>();
+		//queues:
+		FactoryLine<IProduct> factoryLine = new FactoryLine<IProduct>(); 
+		FactoryLine<IProduct> soldThings = new FactoryLine<IProduct>(); 
+		
+		//stacks:
 		WareHouse<IProduct> warehouse = new WareHouse<IProduct>();//copying warehouse for controlling
-		WareHouse<IProduct> sofaWarehouse = new WareHouse<IProduct>();
+		
+		WareHouse<IProduct> sofaWarehouse = new WareHouse<IProduct>(); 
 		WareHouse<IProduct> bedWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> chairWarehouse = new WareHouse<IProduct>();
 		WareHouse<IProduct> dresserWarehouse = new WareHouse<IProduct>();
@@ -84,7 +92,7 @@ public class IZTECHEA {
 		WareHouse<IProduct> bookcaseWarehouse = new WareHouse<IProduct>();
 
 		
-		while(choice != 0) {
+		for(int i=0; i<choice; i++) { //ý changed from while to for and use i to print number of process, so ý deleted choice-=1.
 			
 			IProduct product = null; 
 			
@@ -96,11 +104,11 @@ public class IZTECHEA {
 				factoryLine.enqueue(product);
 				boolean manufactured = product.isManufactured(factoryLine, product);
 				if (manufactured == true) {
-					System.out.println("\n"+users[user_index]+ " requesting " + product.getName() +", SUCCESS, "+ product.getName()
+					System.out.println("\n"+(i+1)+".  "+users[user_index]+ " requesting " + product.getName() +", SUCCESS, "+ product.getName()
 							+" is manufactured.");
 				}
 				else {
-					System.out.println("\n"+users[user_index]+ " requesting " + product.getName() +", FAIL, "+ product.getName()
+					System.out.println("\n"+(i+1)+".  "+users[user_index]+ " requesting " + product.getName() +", FAIL, "+ product.getName()
 							+" is not manufactured.");
 				}
 				
@@ -145,17 +153,17 @@ public class IZTECHEA {
 		    		boolean stored = storage_product.isStored(warehouse,storage_product);
 		    		
 		    		if (stored == true) {
-		    			System.out.println("\n"+users[user_index]+ " storing " + storage_product.getName() +", SUCCESS, "
+		    			System.out.println("\n"+(i+1)+".  "+users[user_index]+ " storing " + storage_product.getName() +", SUCCESS, "
 		    		          + storage_product.getName() +" is stored.");
 		    		}
 		    		else {
-		    			System.out.println("\n"+users[user_index]+ " storing " + storage_product.getName() +", FAIL, "
+		    			System.out.println("\n"+(i+1)+".  "+users[user_index]+ " storing " + storage_product.getName() +", FAIL, "
 			    		          + storage_product.getName() +" is not stored.");
 		    		}
 		    	}
 		    	else {
 		    		
-		    		System.out.println("\nThere is no product in the factory line to store."+ users[user_index]+ " FAIL." );
+		    		System.out.println("\n"+(i+1)+".  "+"There is no product in the factory line to store."+ users[user_index]+ " FAIL." );
 		    	}
 		    }
 		    	
@@ -233,19 +241,18 @@ public class IZTECHEA {
 		    	
 		    	
 		    	if (sold == true) {
-		    		System.out.println("\n"+users[user_index]+ " buying " + b_product.getName() +", SUCCESS, "
+		    		System.out.println("\n"+(i+1)+".  "+users[user_index]+ " buying " + b_product.getName() +", SUCCESS, "
 		    		          + users[user_index]+" bought " + b_product.getName()+".");
 					
 				}
 				else {
-					System.out.println("\n"+ users[user_index]+ " buying " + b_product.getName() +", FAIL, "
+					System.out.println("\n"+(i+1)+".  "+ users[user_index]+ " buying " + b_product.getName() +", FAIL, "
 		    		           + b_product.getName()+ " warehouse empty.");
 					
 				}
 		    	
 		    }
 			
-			choice -=1;
 			
 		}
 		printReport(factoryLine,products,1);

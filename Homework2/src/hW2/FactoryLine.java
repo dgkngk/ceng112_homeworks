@@ -23,7 +23,7 @@ public class FactoryLine<T> implements IQueue<T>{
 	
 	
 	
-	public T getBack() {
+	public T getBack() { ///question: Should we add this method in interface 
 		
 		return factoryLine[backIndex];
 	}
@@ -103,11 +103,11 @@ public class FactoryLine<T> implements IQueue<T>{
 		return is_empty;
 	}
 
-	public boolean checkInit() {
+	private boolean checkInit() { // I changed it public to private 
 		return this.initialized;
 	}
 	
-	public boolean checkCap(int size) {
+	private boolean checkCap(int size) { //question: where do we use this method? 
 		return (size < maxCapacity);
 	}
 }

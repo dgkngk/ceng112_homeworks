@@ -1,4 +1,6 @@
 package hW2;
+ 
+// this class is used by dequeue and getFront methods in FactoryLine class
 
 public class EmptyQueueException extends Exception {
 	

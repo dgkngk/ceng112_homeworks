@@ -74,17 +74,19 @@ public class WareHouse<T> implements IStack<T> {
 	}
 	
 	public void clear() {
-		for (int i=0; i<=elementNumber; i++) pop();
+		for (int i=0; i<=elementNumber; i++) {
+			pop();
+		}
 	}
 	
-	public boolean checkInit() {
+	private boolean checkInit() { // ý changed it public to private
 		return this.initialized;
 	}
 	
-	public boolean checkCap(int size) {
+	private boolean checkCap(int size) { //question: where do we use this?
 		return (size < maxCapacity);
 	}
-	public int getSize() {
+	public int getSize() { //question: should we add this in interface?
 		return elementNumber;
 	}
 }
