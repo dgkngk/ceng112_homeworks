@@ -11,7 +11,5 @@ public interface IQueue<T> {
 
 	public boolean isEmpty();
 	
-	
-	
-
+	public T getBack();
 }

@@ -1,6 +1,6 @@
 package hW2;
 
-import java.util.*;
+import java.util.*;//used to throw exception
 
 
 public class WareHouse<T> implements IStack<T> {

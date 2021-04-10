@@ -8,7 +8,6 @@ public class FactoryLine<T> implements IQueue<T>{
 	private int backIndex;
 	private boolean initialized = false;
 	private static final int defaultCapacity = 50;
-	private static final int maxCapacity = 10000;
 	
 	
 	
@@ -78,6 +77,7 @@ public class FactoryLine<T> implements IQueue<T>{
 			int oldSize = oldLine.length;
 			int newSize = 2 * oldSize;
 			
+			
 			T[] tempLine = (T[]) new Object[newSize];
 			factoryLine= tempLine;
 			
@@ -107,8 +107,5 @@ public class FactoryLine<T> implements IQueue<T>{
 		return this.initialized;
 	}
 	
-	private boolean checkCap(int size) { //question: where do we use this method? 
-		return (size < maxCapacity);
-	}
 }
 

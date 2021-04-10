@@ -6,15 +6,15 @@ public class Sofa implements IProduct{
 	private boolean sold;
 	private boolean man;
 	
-	public boolean isManufactured(FactoryLine<IProduct> factoryLine , IProduct product) {
+	public boolean isManufactured(IQueue<IProduct> factoryLine , IProduct product) {
 		this.man = factoryLine.getBack().getClass() == product.getClass();
 		return this.man;
 	}
-	public boolean isStored(WareHouse<IProduct> warehouse,IProduct product){
+	public boolean isStored(IStack<IProduct> warehouse,IProduct product){
 		this.stored =warehouse.peek().getClass() == product.getClass();
 		return this.stored;
 	}
-	public boolean isSold(FactoryLine<IProduct> soldThings, IProduct product){
+	public boolean isSold(IQueue<IProduct> soldThings, IProduct product){
 		this.sold = soldThings.getBack().getClass() == product.getClass();
 		return sold;
 	}
