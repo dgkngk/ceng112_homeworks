@@ -1,67 +1,180 @@
-package hW3;
+package HW3;
 
 public class LinkedList<T> implements IList<T>{
       
 	
-	 //Take simulations in main
-	@Override
+	 private Node firstNode;
+	 private int numberofEntries;
+	 
+	 public LinkedList() {
+		 
+		 initializeDataFields();
+	 }
+	 private void initializeDataFields() {
+		 
+		 firstNode = null;
+		 numberofEntries = 0;
+	 }
+	 
+	private Node getNodeAt(int givenPosition) {
+			 
+		assert(firstNode != null) &&
+			      (1 <= givenPosition) && (givenPosition <= numberofEntries);
+			 
+		Node currentNode = firstNode;
+			 
+		for(int i =1 ; i < givenPosition; i++) {
+			currentNode = currentNode.getNextNode();
+			}
+		assert currentNode != null;
+		return currentNode;
+			 
+		 }
+		 
+	 @Override
 	public void add(T newEntry) {
-		// TODO Auto-generated method stub
-		
-	}
-
+			Node newNode = new Node(newEntry);
+			
+			if(isEmpty()) {
+				firstNode = newNode;
+			}
+			else {
+				
+				Node lastNode = getNodeAt(numberofEntries);
+				lastNode.setNextNode(newNode);
+			}
+			numberofEntries++;
+		}
+	 
 	@Override
 	public void add(int newPosition, T newEntry) {
-		// TODO Auto-generated method stub
 		
+		if((newPosition >= 1) && (newPosition <= numberofEntries+1)) {
+			
+			Node newNode = new Node(newEntry);
+			
+			if(newPosition == 1) {
+				
+				newNode.setNextNode(firstNode);
+				firstNode = newNode;
+			}
+			else {
+				
+				Node nodeBefore = getNodeAt(newPosition -1);
+				Node nodeAfter = nodeBefore.getNextNode();
+				newNode.setNextNode(nodeAfter);
+				nodeBefore.setNextNode(newNode);
+			}
+			numberofEntries++;
+		}
+		else {
+			throw new IndexOutOfBoundsException("Illegal position");
+		}
 	}
+	 
 
-	@Override
+    @Override
 	public T remove(int Position) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    	T result = null;
+    	if((Position >= 1) && (Position <= numberofEntries)) {
+    		
+    		assert !isEmpty();
+    		if (Position == 1) {
+    			result =firstNode.getData();
+    			firstNode = firstNode.getNextNode();
+    		}
+    		else {
+    			Node nodeBefore = getNodeAt(Position -1);
+    			Node nodeToRemove = nodeBefore.getNextNode();
+    			result = nodeToRemove.getData();
+    			Node nodeAfter = nodeToRemove.getNextNode();
+    			nodeBefore.setNextNode(nodeAfter);
+    		}
+    		numberofEntries--;
+    		return result;
+    	}
+    	else {
+    		throw new IndexOutOfBoundsException(
+    				"Illegal position");
+    	}
+    }
+			
 
-	@Override
-	public T replace(int Position, T newEntry) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+		
 	@Override
 	public T getEntry(int Position) {
-		// TODO Auto-generated method stub
-		return null;
+		if ((Position >= 1) && (Position <= numberofEntries)) {
+			
+			assert !isEmpty();
+			return getNodeAt(Position).getData();
+			
+		}
+		else {
+			throw new IndexOutOfBoundsException(
+					"Illegal position");
+		}
+		
 	}
-
-	@Override
-	public T[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean contains(T anEntry) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
+		
 	@Override
 	public int getLength() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+			return numberofEntries;
+		}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		boolean result;
+		if(numberofEntries == 0)
+		{
+			assert firstNode == null;
+			result = true;
+		}
+		else {
+			assert firstNode != null;
+			result = false;
+		}
+		return result;
+		}
 
-	@Override
-	public void clear() {
-		// TODO Auto-generated method stub
-		
-	}
+	 
+	 
+	 private class Node{
+		 
+		 private T data;
+		 private Node next;
+		 
+		 private Node(T dataPortion) {
+			 this(dataPortion, null);
+			 
+		 }
+		 private Node(T dataPortion, Node nextNode) {
+			 
+			 data = dataPortion;
+			 next = nextNode;
+		 }
+		 
+		 private T getData() {
+			 
+			 return data;
+		 }
+		 
+		 private void setData(T newData) {
+			 
+			 data = newData;
+		}
+		 
+		 private Node getNextNode() {
+			 
+			 return next;
+		 }
+		 
+		 private void setNextNode(Node nextNode) {
+			 
+			 next = nextNode;
+		 }
+	 }
+	 
+
+	
 
 }

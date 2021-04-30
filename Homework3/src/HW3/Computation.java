@@ -1,4 +1,7 @@
-package hW3;
+package HW3;
+
+import java.util.*;
+
 
 public class Computation{
 	
@@ -7,21 +10,24 @@ public class Computation{
 	private IProcess process;
 	
 	private int occupation;
+	
+	private int priority;
     
-	public Computation(IProcess process) {
+	public Computation(IProcess process, int id) {
 		
 		this.process = process;
-		this.id = setId();
+		this.id = id;
 		this.occupation = set_occupation();
 		
 		
 	}
-	private int setId() {
-		
-		return 0;
-	}
+	
 	private int set_occupation() {
-		return 0;
+		
+		Random random = new Random();
+		occupation = (random.nextInt(10)+1);
+		
+		return occupation;
 	}
 	
 	public int getId() {
@@ -33,6 +39,15 @@ public class Computation{
 		
 		return this.occupation;
 	}
+	
+	public int getPriority() {
+		
+		priority = process.getPriority();
+
+        return this.priority;
+	}
+	
+	
 	
 	
 }

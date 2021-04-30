@@ -1,8 +1,8 @@
-package hW3;
+package HW3;
 
 public class Simulation {
 	
-	int processNumber;
+	public int processNumber;
 	
 	
 	public Simulation(int processNumber) {
@@ -10,10 +10,10 @@ public class Simulation {
 	}
 	
 	
-	public ComputationQueue<Computation> simulation() {
+	public PriorityQueue<Computation> simulation() {
 		
-		ProcessList<Process> processList = new ProcessList<Process>();
-		ComputationQueue<Computation> computationQueue = new ComputationQueue<Computation>();
+		List<Process> processList = new List<Process>();
+		PriorityQueue<Computation> computationQueue = new PriorityQueue<Computation>();
 		
 		
 		
@@ -26,7 +26,7 @@ public class Simulation {
 		
 		for(int j=0; j<processList.getLength(); j++) {
 			
-			Computation computation = new Computation(processList.getEntry(j));
+			Computation computation = new Computation(processList.getEntry(j),j);
 			computationQueue.enqueue(computation);
 			
 		}
