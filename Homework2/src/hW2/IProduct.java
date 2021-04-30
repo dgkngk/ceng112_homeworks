@@ -9,6 +9,6 @@ public interface IProduct {
 	
 	public boolean isSold(IQueue<IProduct> soldThings, IProduct product);
 	
-	public String getName(); // to print name of products easily.
+	public String getName(); // to print name of products
 
 }

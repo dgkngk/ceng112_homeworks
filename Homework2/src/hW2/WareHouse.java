@@ -10,27 +10,26 @@ public class WareHouse<T> implements IStack<T> {
 	private int elementNumber;
 	private boolean initialized = false;
 	private static final int defaultCapacity =50;
-	private static final int maxCapacity = 10000;
+	
 	
 	@SuppressWarnings("unchecked")
-	public WareHouse() {
+	public WareHouse() { //constructor
 		wareHouse = (T[])  new Object[defaultCapacity];
 		topIndex = -1; 
 		elementNumber = 0;
 		initialized = true;
 	} 
 	
-	private void ensureCapacity() {
+	private void ensureCapacity() { // method doubles the wareHouse size
 		
 		if (topIndex == wareHouse.length-1) {
 			
 			int newSize = 2 * wareHouse.length;
-			checkCap(newSize);
 			wareHouse = Arrays.copyOf(wareHouse, newSize);
 			}
 	}
 	
-	public void push(T newEntry) {
+	public void push(T newEntry) { //method adds a new element in wareHouse
 		
 		checkInit();
 		ensureCapacity();
@@ -41,7 +40,7 @@ public class WareHouse<T> implements IStack<T> {
 	}
 	
 	
-	public T pop() {
+	public T pop() { // method delete top index element in wareHouse, and return deleted element, if wareHouse is empty,throw exception
 		
 		checkInit();
 		if(isEmpty()) {
@@ -57,9 +56,9 @@ public class WareHouse<T> implements IStack<T> {
 		}
 	}
 	
-	public T peek() {
+	public T peek() { //method returns top index element, if wareHouse is empty throws exception
 		
-		checkInit();
+		checkInit(); 
 		if (isEmpty()) {
 			throw new EmptyStackException();
 			}
@@ -69,24 +68,22 @@ public class WareHouse<T> implements IStack<T> {
 	}
 	
 	
-	public boolean isEmpty() {
+	public boolean isEmpty() { //check wareHouse is empty or not
 		return (elementNumber == 0);
 	}
 	
-	public void clear() {
-		for (int i=0; i<=elementNumber; i++) {
+	public void clear() { //delete all elements in wareHouse
+		for (int i=0; i<=elementNumber; i++) { 
 			pop();
 		}
 	}
 	
-	private boolean checkInit() { // ý changed it public to private
+	private boolean checkInit() {  //check wareHouse is initialized or not
 		return this.initialized;
 	}
 	
-	private boolean checkCap(int size) { //question: where do we use this?
-		return (size < maxCapacity);
-	}
-	public int getSize() { //question: should we add this in interface?
+
+	public int getSize() { //return current element number in wareHouse
 		return elementNumber;
 	}
 }

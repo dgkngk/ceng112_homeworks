@@ -12,7 +12,7 @@ public class FactoryLine<T> implements IQueue<T>{
 	
 	
 	@SuppressWarnings("unchecked")
-	public FactoryLine() {
+	public FactoryLine() { //constructor
 		
 		factoryLine = (T[]) new Object[defaultCapacity+1];
 		frontIndex = 0;
@@ -21,16 +21,7 @@ public class FactoryLine<T> implements IQueue<T>{
 	}
 	
 	
-	
-	public T getBack() { ///question: Should we add this method in interface 
-		
-		return factoryLine[backIndex];
-	}
-	
-
-	
-	
-	public void enqueue(T newEntry) {
+	public void enqueue(T newEntry) { //add a new element in queue
 		
 		checkInit();
 		ensureCapacity();
@@ -39,8 +30,13 @@ public class FactoryLine<T> implements IQueue<T>{
 		
 		
 	}
+	public T getBack() {  /*we add this method to reach final element of the queue, 
+         *using this method, we can more easily check whether the products are produced or not.
+         *we used this method in isManufactured method and isSold method.**/
+         return factoryLine[backIndex];
+         }
 	
-	public T getFront() throws EmptyQueueException   {
+	public T getFront() throws EmptyQueueException   { //return first element in queue
 		
 		checkInit()	;
 		
@@ -51,7 +47,7 @@ public class FactoryLine<T> implements IQueue<T>{
 		else { return factoryLine[frontIndex];}
 	}
 	
-	public T dequeue() throws EmptyQueueException {
+	public T dequeue() throws EmptyQueueException { //delete first element of queue and return deleted element
 		
 		checkInit();
 		if(isEmpty()){
@@ -69,7 +65,7 @@ public class FactoryLine<T> implements IQueue<T>{
 	}
 	
 	@SuppressWarnings("unchecked")
-	private void ensureCapacity() {
+	private void ensureCapacity() {//  double the wareHouse size
 
 		if (frontIndex == ((backIndex +2) % factoryLine.length)) {
 			
@@ -93,7 +89,7 @@ public class FactoryLine<T> implements IQueue<T>{
 		}
 	}
 	
-	public boolean isEmpty() {
+	public boolean isEmpty() { 
 		boolean is_empty = false;
 		
 		if (frontIndex == (((backIndex+1))% factoryLine.length)) {
