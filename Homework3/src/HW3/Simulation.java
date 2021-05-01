@@ -5,8 +5,8 @@ public class Simulation {
 	public int processNumber;
 	
 	
-	public Simulation(int processNumber) {
-		 processNumber = this.processNumber;
+	public Simulation(int processNum) {
+		 processNumber = processNum;
 	}
 	
 	

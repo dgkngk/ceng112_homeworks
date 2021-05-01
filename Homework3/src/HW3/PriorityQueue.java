@@ -12,7 +12,7 @@ public class PriorityQueue<T extends Comparable<? super T>> implements IQueue<T>
 	@SuppressWarnings("unchecked")
 	public PriorityQueue()
 	{
-		priorityQueue = (T[]) new Object[defaultCapacity+1];
+		priorityQueue = (T[]) new Comparable[defaultCapacity+1];
 		frontIndex = 0;
 		backIndex = defaultCapacity;
 		//initialized = true;
@@ -57,14 +57,22 @@ public class PriorityQueue<T extends Comparable<? super T>> implements IQueue<T>
 
 		ensureCapacity();
 		int i = frontIndex;
-		while(priorityQueue[i].compareTo(newEntry) >= 0) {
-			i++;
+		if (isEmpty())
+		{
+			priorityQueue[i] = newEntry;
+			backIndex = (backIndex+1) % priorityQueue.length;
 		}
-		for(int j = backIndex; j >= i; j--) {
-			priorityQueue[j+1] = priorityQueue[j];
+		else 
+		{
+			while(priorityQueue[i].compareTo(newEntry) >= 0) {
+				i++;
+			}
+			for(int j = backIndex; j >= i; j--) {
+				priorityQueue[j+1] = priorityQueue[j];
+			}
+			priorityQueue[i] = newEntry;
+			backIndex = (backIndex+1) % priorityQueue.length;
 		}
-		priorityQueue[i] = newEntry;
-		backIndex++;
 	}
 
 

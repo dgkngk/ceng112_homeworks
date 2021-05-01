@@ -3,7 +3,7 @@ package hW3;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws EmptyQueueException {
 
 		
 		   LinkedList<Simulation> simulationList = new LinkedList<Simulation>();
@@ -25,12 +25,12 @@ public class Main {
 			
 			
 			
-			for(int i=0; i < simulationList.getLength() ; i++) {
+			for(int i=1; i < simulationList.getLength() ; i++) {
 				
 				totalWaitingTime =0; highWaitingTime=0; normalWaitingTime=0; lowWaitingTime=0;
 				highNumber=0; normalNumber=0; lowNumber=0;
 				
-				System.out.println("Simulation number:" + (i+1));
+				System.out.println("Simulation number:" + (i));
                 PriorityQueue<Computation> computationQueue = simulationList.getEntry(i).simulation();
                 
                 computationNumber = simulationList.getEntry(i).processNumber;
@@ -39,12 +39,8 @@ public class Main {
                 
                 for (int j=0; j < simulationList.getEntry(i).processNumber; j++) {
                 	
-                	  Computation computation;
-					try {
-						computation = computationQueue.dequeue();
-					} catch (EmptyQueueException e) {
-						break;//might not be optimal
-					}
+                	  Computation computation= computationQueue.dequeue();
+					
                 	  System.out.print("<-- P"+computation.getId());
                 	  Priority = computation.getPriority();
                 	  waitingTime = computation.get_occupation();

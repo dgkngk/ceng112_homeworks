@@ -26,7 +26,7 @@ public class List<T> implements IList<T> {
 	public void add(T newEntry) {
 		
 		checkInitialization();
-		list[numberofEntries+1]= newEntry;
+		list[numberofEntries]= newEntry;
 		numberofEntries++;
 		ensureCapacity();
 	}
@@ -134,7 +134,7 @@ public class List<T> implements IList<T> {
 		
 		checkInitialization();
 		
-		if((Position>=1)&&(Position<=numberofEntries)) {
+		if((Position>=0)&&(Position<=numberofEntries)) {
 			
 			assert  !isEmpty();
 			return list[Position];
@@ -148,8 +148,7 @@ public class List<T> implements IList<T> {
 
 	@Override
 	public int getLength() {
-		// TODO Auto-generated method stub
-		return 0;
+		return numberofEntries;
 	}
 
 	@Override
