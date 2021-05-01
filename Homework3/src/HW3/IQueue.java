@@ -1,7 +1,7 @@
 package hW3;
 
 
-public interface IQueue<T> { 
+public interface IQueue<T extends Comparable<? super T>> { 
 		
 		
 		public void enqueue(T newEntry);
@@ -9,8 +9,6 @@ public interface IQueue<T> {
 		public T getFront() throws EmptyQueueException;
 		
 		public T dequeue() throws EmptyQueueException;//remove highest priority
-		
-		public T peek();
 		
 		public boolean isEmpty();
 		

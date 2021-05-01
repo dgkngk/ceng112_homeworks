@@ -18,8 +18,7 @@ public class LinkedList<T> implements IList<T>{
 	 
 	private Node getNodeAt(int givenPosition) {
 			 
-		assert(firstNode != null) &&
-			      (1 <= givenPosition) && (givenPosition <= numberofEntries);
+		assert (firstNode != null) && (1 <= givenPosition) && (givenPosition <= numberofEntries);
 			 
 		Node currentNode = firstNode;
 			 
@@ -94,8 +93,7 @@ public class LinkedList<T> implements IList<T>{
     		return result;
     	}
     	else {
-    		throw new IndexOutOfBoundsException(
-    				"Illegal position");
+    		throw new IndexOutOfBoundsException("Illegal position");
     	}
     }
 			

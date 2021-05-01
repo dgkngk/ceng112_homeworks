@@ -3,7 +3,7 @@ package hW3;
 import java.util.*;
 
 
-public class Computation{
+public class Computation implements Comparable<Computation>{
 	
 	private int id;
 	
@@ -11,7 +11,7 @@ public class Computation{
 	
 	private int occupation;
 	
-	private int priority;
+	private int Priority;
     
 	public Computation(IProcess process, int id) {
 		
@@ -42,12 +42,22 @@ public class Computation{
 	
 	public int getPriority() {
 		
-		priority = process.getPriority();
+		Priority = process.getPriority();
 
-        return this.priority;
+        return this.Priority;
 	}
 	
-	
+	public int compareTo(Computation o) {
+		if (o.getPriority() == Priority)
+			return 0;
+		
+		else if (o.getPriority() > Priority) 
+			return -1;
+		
+		else
+			return 1;
+		
+	}	
 	
 	
 }

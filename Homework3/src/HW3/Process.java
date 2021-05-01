@@ -2,12 +2,11 @@ package hW3;
 
 import java.util.*;
 
-public class Process implements IProcess, Comparable<Process>{
+public class Process implements IProcess{
 	
 	//computation içine girer
 
 	private int Priority;
-	
 
 	public Process() {
 		
@@ -34,20 +33,17 @@ public class Process implements IProcess, Comparable<Process>{
 	@Override
 	public String getType() {
 		
-		return null;
+		if(Priority==1) {
+			return "High";
+		}
+		else if(Priority==2) {
+			return "Medium";
+		}
+		else {
+			return "Low";
+		}
 		
 	}
 	
-	@Override
-	public int compareTo(Process o) {
-		if (o.getPriority() == Priority)
-			return 0;
-		
-		else if (o.getPriority() > Priority) 
-			return -1;
-		
-		else
-			return 1;
-		
-	}	
+	
 }

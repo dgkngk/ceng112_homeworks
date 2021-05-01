@@ -4,7 +4,6 @@ package hW3;
 public class Main {
 
 	public static void main(String[] args) {
-		   
 
 		
 		   LinkedList<Simulation> simulationList = new LinkedList<Simulation>();
