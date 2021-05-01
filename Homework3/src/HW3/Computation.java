@@ -1,4 +1,4 @@
-package HW3;
+package hW3;
 
 import java.util.*;
 

@@ -1,8 +1,8 @@
-package HW3;
+package hW3;
 
 import java.util.*;
 
-public class Process implements IProcess{
+public class Process implements IProcess, Comparable<Process>{
 	
 	//computation içine girer
 
@@ -11,23 +11,20 @@ public class Process implements IProcess{
 
 	public Process() {
 		
-		this.Priority = setPriority();
+		setPriority();
 		
 	}
 	
-	private int setPriority() {
+	private void setPriority() {
 		
-		
-		return 0;
+		Random random = new Random();
+		Priority = (random.nextInt(3) + 1);
 		
 	}
 
 	
 	@Override
 	public int getPriority() {
-		
-		Random random = new Random();
-		Priority = (random.nextInt(3) + 1);
 		
 		 return this.Priority;
 		
@@ -38,6 +35,19 @@ public class Process implements IProcess{
 	public String getType() {
 		
 		return null;
+		
 	}
 	
+	@Override
+	public int compareTo(Process o) {
+		if (o.getPriority() == Priority)
+			return 0;
+		
+		else if (o.getPriority() > Priority) 
+			return -1;
+		
+		else
+			return 1;
+		
+	}	
 }

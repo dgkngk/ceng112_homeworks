@@ -1,10 +1,12 @@
-package HW3;
+package hW3;
 
 
 public class Main {
 
 	public static void main(String[] args) {
 		   
+
+		
 		   LinkedList<Simulation> simulationList = new LinkedList<Simulation>();
             
 		
@@ -14,7 +16,7 @@ public class Main {
 			simulationList.add(simulation2);
 			Simulation simulation3 = new Simulation(10);
 			simulationList.add(simulation3);
-			
+
 			
 			int computationNumber;
 			int waitingTime, totalWaitingTime, highWaitingTime, normalWaitingTime, lowWaitingTime;
@@ -38,7 +40,12 @@ public class Main {
                 
                 for (int j=0; j < simulationList.getEntry(i).processNumber; j++) {
                 	
-                	  Computation computation = computationQueue.dequeue();
+                	  Computation computation;
+					try {
+						computation = computationQueue.dequeue();
+					} catch (EmptyQueueException e) {
+						break;//might not be optimal
+					}
                 	  System.out.print("<-- P"+computation.getId());
                 	  Priority = computation.getPriority();
                 	  waitingTime = computation.get_occupation();
@@ -77,6 +84,7 @@ public class Main {
 			
 			
 			}
+			
 			
 	}
 
