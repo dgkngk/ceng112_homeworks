@@ -25,7 +25,7 @@ public class Main {
 			
 			
 			
-			for(int i=1; i < simulationList.getLength() ; i++) {
+			for(int i=1; i < simulationList.getLength() + 1 ; i++) {
 				
 				totalWaitingTime =0; highWaitingTime=0; normalWaitingTime=0; lowWaitingTime=0;
 				highNumber=0; normalNumber=0; lowNumber=0;
@@ -69,12 +69,24 @@ public class Main {
                 System.out.println("\nTotal number of computations for High:" + highNumber);
                 System.out.println("Total number of computations for Normal:" + normalNumber);
                 System.out.println("Total number of computations for Low:" +  lowNumber);
+                
                 System.out.println("\nTotal waiting time for High:" + highWaitingTime);
-                System.out.println("Average waiting time for High:"+ (highWaitingTime/highNumber));
+                if(highNumber==0)
+                	System.out.println("Average waiting time for High:"+ (highWaitingTime/1));
+                else
+                	System.out.println("Average waiting time for High:"+ (highWaitingTime/highNumber));
+                
                 System.out.println("\nTotal waiting time for Normal:" + normalWaitingTime);
-                System.out.println("Average waiting time for Normal:" + (normalWaitingTime/normalNumber));
+                if(normalNumber==0)
+                	System.out.println("Average waiting time for High:"+ (normalWaitingTime/1));
+                else
+                	System.out.println("Average waiting time for High:"+ (normalWaitingTime/normalNumber));
+                
                 System.out.println("\nTotal waiting time for Low:" + lowWaitingTime);
-                System.out.println("Average waiting time for Low:" + (lowWaitingTime/lowNumber));
+                if(lowNumber==0)
+                	System.out.println("Average waiting time for High:"+ (lowWaitingTime/1));
+                else
+                	System.out.println("Average waiting time for High:"+ (lowWaitingTime/lowNumber));
                 
 			
 			
