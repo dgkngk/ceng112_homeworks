@@ -1,4 +1,4 @@
-package hW3;
+package HW3;
 
 
 public interface IQueue<T extends Comparable<? super T>> { 

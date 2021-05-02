@@ -1,4 +1,4 @@
-package hW3;
+package HW3;
  
 // this class is used by dequeue and getFront methods in FactoryLine class
 

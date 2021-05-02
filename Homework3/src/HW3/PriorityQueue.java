@@ -1,4 +1,4 @@
-package hW3;
+package HW3;
 
 public class PriorityQueue<T extends Comparable<? super T>> implements IQueue<T>{
 	

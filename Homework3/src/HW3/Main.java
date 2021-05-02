@@ -1,4 +1,4 @@
-package hW3;
+package HW3;
 
 
 public class Main {
@@ -18,7 +18,7 @@ public class Main {
 
 			
 			int computationNumber;
-			int waitingTime, totalWaitingTime, highWaitingTime, normalWaitingTime, lowWaitingTime;
+			float waitingTime, totalWaitingTime, highWaitingTime, normalWaitingTime, lowWaitingTime;
 			int highNumber, normalNumber, lowNumber;
 			
 			int Priority;
@@ -27,8 +27,8 @@ public class Main {
 			
 			for(int i=1; i < simulationList.getLength() + 1 ; i++) {
 				
-				totalWaitingTime =0; highWaitingTime=0; normalWaitingTime=0; lowWaitingTime=0;
-				highNumber=0; normalNumber=0; lowNumber=0;
+				totalWaitingTime = 0; highWaitingTime= 0; normalWaitingTime= 0; lowWaitingTime= 0;
+				highNumber= 0; normalNumber= 0; lowNumber= 0;
 				
 				System.out.println("Simulation number:" + (i));
                 PriorityQueue<Computation> computationQueue = simulationList.getEntry(i).simulation();
@@ -46,21 +46,35 @@ public class Main {
                 	  waitingTime = computation.get_occupation();
                 	  if (Priority == 1) {
               			System.out.print(", High");
-              			highWaitingTime =+ waitingTime;
+              			if(j==((simulationList.getEntry(i).processNumber)-1)) {highNumber ++;}
+              			
+              			else {
+              			highWaitingTime = highWaitingTime + waitingTime;
+              			totalWaitingTime =totalWaitingTime + waitingTime;
               			highNumber ++;
+              			}
               		  }
               		  else if (Priority == 2) {
               			System.out.print(", Normal");
-              			normalWaitingTime =+ waitingTime;
-              			normalNumber++;
+              			if(j==((simulationList.getEntry(i).processNumber)-1)) {
+              				 normalNumber ++;}
+              			else {
+              				normalWaitingTime = normalWaitingTime + waitingTime;
+              			    totalWaitingTime = totalWaitingTime + waitingTime;
+              			    normalNumber++;
+              			    }
               		 }
               		 else{
               			System.out.print(", Low");
-              			lowWaitingTime =+ waitingTime;
-              			lowNumber++;
+              			if(j==((simulationList.getEntry(i).processNumber)-1)){
+              						   lowNumber++;}
+              			else {
+              				lowWaitingTime = lowWaitingTime + waitingTime;
+              				totalWaitingTime = totalWaitingTime + waitingTime;
+              				lowNumber++;}
               		 }
                 	 System.out.print(", " + waitingTime + "ns");
-                	 totalWaitingTime =+ waitingTime;
+                	 
                 }
                 
                 System.out.println("\nTotal numbers of computation:" + computationNumber );
@@ -70,23 +84,50 @@ public class Main {
                 System.out.println("Total number of computations for Normal:" + normalNumber);
                 System.out.println("Total number of computations for Low:" +  lowNumber);
                 
-                System.out.println("\nTotal waiting time for High:" + highWaitingTime);
-                if(highNumber==0)
-                	System.out.println("Average waiting time for High:"+ (highWaitingTime/1));
-                else
+               
+                if(highNumber==1) {
+                	System.out.println("\nTotal waiting time for High:" + 0);
+                	System.out.println("Average waiting time for High:"+ 0);
+                	}
+                else {
+                	System.out.println("\nTotal waiting time for High:" + highWaitingTime);
                 	System.out.println("Average waiting time for High:"+ (highWaitingTime/highNumber));
+                	}
                 
-                System.out.println("\nTotal waiting time for Normal:" + normalWaitingTime);
-                if(normalNumber==0)
-                	System.out.println("Average waiting time for High:"+ (normalWaitingTime/1));
-                else
-                	System.out.println("Average waiting time for High:"+ (normalWaitingTime/normalNumber));
+                if((highNumber==0 && normalNumber==1) || normalNumber==0) {
                 
-                System.out.println("\nTotal waiting time for Low:" + lowWaitingTime);
-                if(lowNumber==0)
-                	System.out.println("Average waiting time for High:"+ (lowWaitingTime/1));
-                else
-                	System.out.println("Average waiting time for High:"+ (lowWaitingTime/lowNumber));
+                	System.out.println("\nTotal waiting time for Normal:" + 0);
+                	System.out.println("Average waiting time for Normal:"+ 0);
+                	}
+                
+                else if((highNumber!=0 && normalNumber==1)){
+                	System.out.println("\nTotal waiting time for Normal:" + (highWaitingTime));
+                	System.out.println("Average waiting time for Normal:"+ ((highWaitingTime)/normalNumber));
+                	}
+                else {
+                	System.out.println("\nTotal waiting time for Normal:" + (highWaitingTime+normalWaitingTime));
+                	System.out.println("Average waiting time for Normal:"+ ((highWaitingTime+normalWaitingTime)/normalNumber));
+                	
+                }
+                
+                if((highNumber==0 && normalNumber==0 && lowNumber==1) || lowNumber==0 ) {
+                    
+                	System.out.println("\nTotal waiting time for Low:" + 0);
+                	System.out.println("Average waiting time for Low:"+ 0);
+                	}
+                else if((highNumber!=0 || normalNumber!=0) && normalNumber==1){
+                	
+                	System.out.println("\nTotal waiting time for Low:" + (normalWaitingTime + highWaitingTime));
+                	System.out.println("Average waiting time for Low:"+ ((normalWaitingTime + highWaitingTime)/ lowNumber));
+                	}
+                
+                else {
+                	System.out.println("\nTotal waiting time for Low:" + (normalWaitingTime + highWaitingTime));
+                	System.out.println("Average waiting time for Low:"+ ((normalWaitingTime+highWaitingTime+lowWaitingTime)/lowNumber));
+                	}
+               
+                	
+            
                 
 			
 			

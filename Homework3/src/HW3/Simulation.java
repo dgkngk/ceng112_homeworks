@@ -1,4 +1,4 @@
-package hW3;
+package HW3;
 
 public class Simulation {
 	
