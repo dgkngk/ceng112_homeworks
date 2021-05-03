@@ -1,4 +1,4 @@
-package HW3;
+package hW3;
 
 
 public class Main {
@@ -46,7 +46,7 @@ public class Main {
                 	  waitingTime = computation.get_occupation();
                 	  if (Priority == 1) {
               			System.out.print(", High");
-              			if(j==((simulationList.getEntry(i).processNumber)-1)) {highNumber ++;}
+              			if(j==((simulationList.getEntry(i).processNumber))) {highNumber ++;}
               			
               			else {
               			highWaitingTime = highWaitingTime + waitingTime;

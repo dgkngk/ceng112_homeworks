@@ -1,4 +1,4 @@
-package HW3;
+package hW3;
 
 public class PriorityQueue<T extends Comparable<? super T>> implements IQueue<T>{
 	
@@ -56,22 +56,39 @@ public class PriorityQueue<T extends Comparable<? super T>> implements IQueue<T>
 	public void enqueue(T newEntry) {//must be changed to be able to insert according to priority
 
 		ensureCapacity();
-		int i = frontIndex;
+
 		if (isEmpty())
 		{
-			priorityQueue[i] = newEntry;
+			priorityQueue[frontIndex] = newEntry;
 			backIndex = (backIndex+1) % priorityQueue.length;
 		}
 		else 
 		{
-			while(priorityQueue[i].compareTo(newEntry) >= 0) {
+			int c = 0;
+			for(int i = 0; i <backIndex;i++) {
+				if(priorityQueue[i].compareTo(newEntry) < 0) {
+					for(int j = backIndex; j >= i; j--) {
+						priorityQueue[j+1] = priorityQueue[j];
+					}
+					priorityQueue[i] = newEntry;
+					backIndex = (backIndex+1) % priorityQueue.length;
+					return;
+				}
+				c++;
+			}
+			
+			priorityQueue[c] = newEntry;
+			backIndex = (backIndex+1) % priorityQueue.length;
+			
+			
+			/*while(priorityQueue[i].compareTo(newEntry) >= 0) {
 				i++;
 			}
 			for(int j = backIndex; j >= i; j--) {
 				priorityQueue[j+1] = priorityQueue[j];
 			}
 			priorityQueue[i] = newEntry;
-			backIndex = (backIndex+1) % priorityQueue.length;
+			backIndex = (backIndex+1) % priorityQueue.length;*/
 		}
 	}
 
