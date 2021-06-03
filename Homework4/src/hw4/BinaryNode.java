@@ -66,4 +66,12 @@ public class BinaryNode<T> {
 	{
 		return (leftChild == null) && (rightChild == null);
 	}
+	
+	public BinaryNode<T> copy()
+	{
+		BinaryNode<T> newRoot = new BinaryNode<>(data);
+		
+		if((leftTree != null) && !left.isEmpty())
+			root.setLeftChild(leftTree.root.copy();)
+	}
 }
