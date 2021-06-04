@@ -23,7 +23,7 @@ public class BinaryNode<T> {
 		rightChild = newRightChild;
 	}
 	
-	public T getDate() {
+	public T getData() {
 		return data;
 	}
 	
@@ -71,7 +71,12 @@ public class BinaryNode<T> {
 	{
 		BinaryNode<T> newRoot = new BinaryNode<>(data);
 		
-		if((leftTree != null) && !left.isEmpty())
-			root.setLeftChild(leftTree.root.copy();)
+		if (leftChild != null)
+			newRoot.setLeft(leftChild.copy());
+		if (rightChild != null)
+			newRoot.setRight(rightChild.copy());
+		return newRoot;
 	}
+	//getheight
+	//getnumberofnodes
 }
