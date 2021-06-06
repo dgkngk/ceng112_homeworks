@@ -1,6 +1,7 @@
 package hw4;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 //new package or stack class import
 
@@ -10,7 +11,7 @@ public class Tree<T>
 		private StackInterface<BinaryNode<T>> nodeStack;
 		private BinaryNode currentNode;
 		
-		public TreeIterator() {
+		public InorderIterator() {
 			nodeStack = new LinkedStack<>();
 			currentNode = root;
 		}
@@ -38,10 +39,6 @@ public class Tree<T>
 			else
 				throw new NoSuchElementException();
 			return nextNode.getData();
-		}
-		public void remove()
-		{
-			throw new Unsupported
 		}
 	}
 
@@ -111,7 +108,7 @@ public class Tree<T>
 	}
 	
 	public Iterator<T> getInorderIterator(){
-		return new TreeIterator();
+		return new InorderIterator();
 	}
 	//traverse
 	

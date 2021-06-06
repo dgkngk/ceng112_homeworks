@@ -5,9 +5,23 @@ public class Food implements Orderable, Comparable<Food>  {
 	private String name;
 	private double price;
 	private int stock;
-	private Restaurant restaurant;
+	private String restaurant;
 	
-	//get-sets
+	public Food() 
+	{
+		name = null;
+		price = 0;
+		stock = 0;
+		restaurant = null;
+	}
+	
+	public Food(String fname, double fPrice, String frestaurant, int fStock) 
+	{
+		name = fname;
+		price = fPrice;
+		stock = fStock;
+		restaurant = frestaurant;
+	}
 
 	@Override
 	public void updatePrice(double price) {
@@ -28,7 +42,7 @@ public class Food implements Orderable, Comparable<Food>  {
 	public int getStock() {
 		return stock;
 	}
-	public Restaurant getRestaurant() {
+	public String getRestaurant() {
 		return restaurant;
 	}
 
