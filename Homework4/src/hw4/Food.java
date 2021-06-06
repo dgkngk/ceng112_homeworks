@@ -1,6 +1,6 @@
 package hw4;
 
-public class Food implements Orderable  {
+public class Food implements Orderable, Comparable<Food>  {
 	
 	private String name;
 	private double price;
@@ -11,14 +11,44 @@ public class Food implements Orderable  {
 
 	@Override
 	public void updatePrice(double price) {
-		// TODO Auto-generated method stub
-		
+		this.price = price;	
 	}
 
 	@Override
 	public void updateStock(int stock) {
-		// TODO Auto-generated method stub
-		
+		this.stock = stock;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	public double getPrice() {
+		return price;
+	}
+	public int getStock() {
+		return stock;
+	}
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	@Override
+	public int compareTo(Food o) {
+		if(price > o.price)
+			return 1;
+		else if (price == o.price)
+			return 0;
+		else
+			return -1;
+	}
+	
+	public int compareTo(int otherStock) {
+		if(stock > otherStock)
+			return 1;
+		else if (stock == otherStock)
+			return 0;
+		else
+			return -1;
 	}
 
 }

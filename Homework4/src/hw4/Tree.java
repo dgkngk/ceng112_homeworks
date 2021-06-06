@@ -1,8 +1,50 @@
 package hw4;
+
+import java.util.Iterator;
+
 //new package or stack class import
 
 public class Tree<T> 
 {
+	private class InorderIterator implements Iterator<T> {
+		private StackInterface<BinaryNode<T>> nodeStack;
+		private BinaryNode currentNode;
+		
+		public TreeIterator() {
+			nodeStack = new LinkedStack<>();
+			currentNode = root;
+		}
+
+		@Override
+		public boolean hasNext() {
+			return !nodeStack.isEmpty() || (currentNode != null);
+		}
+
+		@Override
+		public T next() {
+			BinaryNode<T> nextNode = null;
+			while (currentNode != null)
+			{
+				nodeStack.push(currentNode);
+				currentNode = currentNode.getLeft();
+			}
+			
+			if (!nodeStack.isEmpty()) {
+				nextNode = nodeStack.pop();
+				assert nextNode != null;
+				
+				currentNode = nextNode.getRight();
+			}
+			else
+				throw new NoSuchElementException();
+			return nextNode.getData();
+		}
+		public void remove()
+		{
+			throw new Unsupported
+		}
+	}
+
 	private BinaryNode<T> root;
 	
 	public Tree(){
@@ -40,25 +82,24 @@ public class Tree<T>
 		privateSetTree(rootData, leftTree, rightTree);
 	}
 	
-	public T add(T newEntry) {
-		
-	}
-	
-	public T remove(T entry) {
-		
-	}
-	
 	public T getRootData() {
 		T rootData = null;
 		
 		if (root != null)
 			rootData = root.getData();
-		
 		return rootData;
 	}
 	
 	protected BinaryNode<T> getRootNode() {
 		return root;
+	}
+	
+	protected void setRootData(T rootData) {
+		root.setData(rootData);
+	}
+	
+	protected void setRootNode(BinaryNode<T> rootNode) {
+		root = rootNode;
 	}
 	
 	public boolean isEmpty() {
@@ -69,20 +110,30 @@ public class Tree<T>
 		root = null;
 	}
 	
-	public T getEntry(T entry) {
-		return findEntry(getRootNode(), entry);
+	public Iterator<T> getInorderIterator(){
+		return new TreeIterator();
 	}
+	//traverse
 	
-	private T findEntry(BinaryNode<T> rootNode, T entry)
+	public void iterativeInorderTraverse() 
 	{
-		T result = null;
+		StackInterface<BinaryNode<T>> nodeStack = new LinkedStack<>();
+		BinaryNode<T> currentNode = root;
 		
-		if (rootNode != null)
+		while (!nodeStack.isEmpty() || (currentNode != null))
 		{
-			T rootEntry = rootNode.getData();
+			while (currentNode != null)
+			{
+				nodeStack.push(currentNode);
+				currentNode = currentNode.getLeft();
+			}
 			
-			//to-do:needs comparators here
+			if (!nodeStack.isEmpty())
+			{
+				BinaryNode<T> nextNode = nodeStack.pop();
+				assert nextNode != null;
+				currentNode = nextNode.getRight();
+			}
 		}
-		return result;
 	}
 }
